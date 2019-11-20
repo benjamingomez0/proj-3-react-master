@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import {Button, Form} from "semantic-ui-react"
 import "./newRecipe.css"
+import {PulseLoader} from "react-spinners"
 
 class NewRecipe extends Component{
     state = {
@@ -20,6 +21,7 @@ class NewRecipe extends Component{
         error1: "",
         error2: "",
         error3: "",
+        loading: false
     }
 
     handleChange = (e) => {
@@ -27,9 +29,31 @@ class NewRecipe extends Component{
           [e.currentTarget.name]: e.currentTarget.value
         })
       }
+    
+    handleSubmit = async (e) => {
+      e.preventDefault
+      try{
+        const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/new-recipe`, {
+          method: "POST",
+          body: JSON.stringify(this.state),
+          headers: {
+            "Content-Type": "application/json"
+          }
+        })
+        const parsedResponse = await newRecipeResponse.json()
+        console.log(parsedResponse)
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+
 
     getNutrition = async (e) => {
         try{
+            this.setState({
+              loading: true
+            })
             console.log("this is hitting")
             e.preventDefault()
             //FOOD DATABASE IS BASED ON PER 100G
@@ -97,6 +121,7 @@ class NewRecipe extends Component{
                 (ing1Cal*this.state.ingredient1Amount*28.3495/100)
                 + (ing2Cal*this.state.ingredient2Amount*28.3495/100) 
                 + (ing3Cal*this.state.ingredient3Amount*28.3495/100)))/this.state.servings).toFixed(2)),
+              loading: false
             })
           }
         catch(err){
@@ -121,6 +146,9 @@ class NewRecipe extends Component{
                     <textarea placeholder="Tell us how to cook your dish!" type="text" name="directions" rows="10" onChange={this.handleChange}/><br/>
                     <div id="cal-total">
                       Calories Per Serving: {this.state.cal}
+                    </div>
+                    <div className="loader">
+                      <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={this.state.loading}/>
                     </div>
                     <button id="new-recipe-button" onClick={this.getNutrition}>Hattrick!</button><br/>
                 </form>
