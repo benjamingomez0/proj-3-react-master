@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Button, Form} from "semantic-ui-react"
-import "."
+import "./newRecipe.css"
 
 class NewRecipe extends Component{
     state = {
@@ -11,7 +11,11 @@ class NewRecipe extends Component{
         ingredient3: "",
         ingredient3Amount: "",
         cal: 0,
-        error: false
+        servings: 0,
+        directions: "",
+        error1: "",
+        error2: "",
+        error3: ""
     }
 
 
@@ -43,25 +47,43 @@ class NewRecipe extends Component{
           let ing3Cal
           if(parsedIng1.error || parsedIng1.parsed.length === 0){
             ing1Cal = 0
+            this.setState({
+              error1: "Ingredient 1 not calculated. Please try a different search if you want to include it."
+            })
           }
           else {
             ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
+            this.setState({
+              error1: ""
+            })
           }
 
           if(parsedIng2.error || parsedIng2.parsed.length === 0){
             ing2Cal = 0
+            this.setState({
+              error2: "Ingredient 2 not calculated. Please try a different search if you want to include it."
+            })
           }
           else {
             ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
+            this.setState({
+              error2: ""
+            })
           }
 
           if(parsedIng3.error || parsedIng3.parsed.length === 0){
             ing3Cal = 0
+            this.setState({
+              error3: "Ingredient 3 not calculated. Please try a different search if you want to include it."
+            })
           }
           else {
             ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
+            this.setState({
+              error3: ""
+            })
           }
-
+          console.log("about to hit final setState")
           this.setState(
             {
             cal: (
@@ -86,10 +108,14 @@ class NewRecipe extends Component{
                     Amount (oz): <input type="number" name="ingredient2Amount" onChange={this.handleChange}/><br/>
                     Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
                     Amount (oz): <input type="number" name="ingredient3Amount" onChange={this.handleChange}/><br/>
+                    Servings: <input type="number" name="servings" onChange={this.handleChange}/><br/>
+                    Directions: <textarea type="text" name="directions" onChange={this.handleChange}/><br/>
                   <Button onClick={this.getNutrition}>Hattrick!</Button><br/>
-                  {/* <div style={{display: "hidden"}}>Error</div> */}
                 </Form>
                   Total Calories: {this.state.cal}
+                  <div className="error">{this.state.error1}</div>
+                  <div className="error">{this.state.error2}</div>
+                  <div className="error">{this.state.error3}</div>
             </div>
         )
     }
