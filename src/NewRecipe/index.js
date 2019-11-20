@@ -1,15 +1,19 @@
 import React, { Component } from 'react'
-import {Button, Form} from "semantic-ui-react"
+// import {Button, Form} from "semantic-ui-react"
 import "./newRecipe.css"
 
 class NewRecipe extends Component{
     state = {
+        recipeName: "",
         ingredient1: "",
         ingredient1Amount: "",
+        ingredientId1:"",
         ingredient2: "",
         ingredient2Amount: "",
+        ingredientId2:"",
         ingredient3: "",
         ingredient3Amount: "",
+        ingredientId3:"",
         cal: 0,
         servings: 0,
         directions: "",
@@ -17,7 +21,6 @@ class NewRecipe extends Component{
         error2: "",
         error3: ""
     }
-
 
     handleChange = (e) => {
         this.setState({
@@ -48,48 +51,54 @@ class NewRecipe extends Component{
           if(parsedIng1.error || parsedIng1.parsed.length === 0){
             ing1Cal = 0
             this.setState({
-              error1: "Ingredient 1 not calculated. Please try a different search if you want to include it."
+              error1: "Ingredient 1 not calculated. Please try a different search if you want to include it.",
+              ingredientId1: ""
             })
           }
           else {
             ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
             this.setState({
-              error1: ""
+              error1: "",
+              ingredientId1: parsedIng1.parsed[0].food.foodId,
             })
           }
 
           if(parsedIng2.error || parsedIng2.parsed.length === 0){
             ing2Cal = 0
             this.setState({
-              error2: "Ingredient 2 not calculated. Please try a different search if you want to include it."
+              error2: "Ingredient 2 not calculated. Please try a different search if you want to include it.",
+              ingredientId2: ""
             })
           }
           else {
             ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
             this.setState({
-              error2: ""
+              error2: "",
+              ingredientId2: parsedIng2.parsed[0].food.foodId,
             })
           }
 
           if(parsedIng3.error || parsedIng3.parsed.length === 0){
             ing3Cal = 0
             this.setState({
-              error3: "Ingredient 3 not calculated. Please try a different search if you want to include it."
+              error3: "Ingredient 3 not calculated. Please try a different search if you want to include it.",
+              ingredientId3: ""
             })
           }
           else {
             ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
             this.setState({
-              error3: ""
+              error3: "",
+              ingredientId3: parsedIng3.parsed[0].food.foodId,
             })
           }
-          console.log("about to hit final setState")
+          console.log(parsedIng1.parsed[0].food.foodId)
           this.setState(
             {
-            cal: (
+            cal: (((
               (ing1Cal*this.state.ingredient1Amount*28.3495/100)
               + (ing2Cal*this.state.ingredient2Amount*28.3495/100) 
-              + (ing3Cal*this.state.ingredient3Amount*28.3495/100)).toFixed(2)
+              + (ing3Cal*this.state.ingredient3Amount*28.3495/100)))/this.state.servings.toFixed(2)),
           })
         }
         catch(err){
@@ -99,23 +108,28 @@ class NewRecipe extends Component{
 
     render(){
         return(
-            <div>
-                <h1>Create Your Hattrick</h1>
-                <Form>
+            <div id="new-recipe-container">
+              <div id="new-recipe-background-layer">
+                <h1 id="new-recipe-header">Create Your Hattrick</h1>
+                <form>
+                    Recipe Name: <input type="text" name="recipeName" onChange={this.handleChange}/><br/>
                     Ingredient 1: <input type="text" name="ingredient1" onChange={this.handleChange}/>
-                    Amount (oz): <input type="number" name="ingredient1Amount" onChange={this.handleChange}/><br/>
+                    <input placeholder="Ounces" type="number" min="0" name="ingredient1Amount" onChange={this.handleChange}/><br/>
                     Ingredient 2: <input type="text" name="ingredient2" onChange={this.handleChange}/>
-                    Amount (oz): <input type="number" name="ingredient2Amount" onChange={this.handleChange}/><br/>
+                    <input placeholder="Ounces" type="number" min="0" name="ingredient2Amount" onChange={this.handleChange}/><br/>
                     Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
-                    Amount (oz): <input type="number" name="ingredient3Amount" onChange={this.handleChange}/><br/>
-                    Servings: <input type="number" name="servings" onChange={this.handleChange}/><br/>
-                    Directions: <textarea type="text" name="directions" onChange={this.handleChange}/><br/>
-                  <Button onClick={this.getNutrition}>Hattrick!</Button><br/>
-                </Form>
-                  Total Calories: {this.state.cal}
+                    <input placeholder="Ounces" type="number" min="0" name="ingredient3Amount" onChange={this.handleChange}/><br/>
+                    Servings: <input type="number" min="0" name="servings" onChange={this.handleChange}/><br/>
+                    <textarea placeholder="Tell us how to cook your dish!" type="text" name="directions" cols="100" rows="10" onChange={this.handleChange}/><br/>
+                    <div id="cal-total">
+                      Calories Per Serving: {this.state.cal}
+                    </div>
+                    <button onClick={this.getNutrition}>Hattrick!</button><br/>
+                </form>
                   <div className="error">{this.state.error1}</div>
                   <div className="error">{this.state.error2}</div>
                   <div className="error">{this.state.error3}</div>
+                </div>
             </div>
         )
     }
