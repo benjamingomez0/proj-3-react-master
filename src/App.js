@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import NewRecipe from "./NewRecipe"
 import './App.css';
 
 const apiKey = "385e19ba163511e02698e7299dab66fb"
@@ -10,29 +11,30 @@ class App extends Component {
     checkdb: []
   }
 
-  getdb = async () => {
-    try{
-      console.log("this is hitting")
-      const db = await fetch ("https://api.edamam.com/api/food-database/parser?ingr=apple&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb")
-      const parseddb = await db.json()
-      console.log(parseddb)
-      this.setState({
-        checkdb: parseddb.hints[0].food.nutrients.ENERC_KCAL
-      })
-    }
-    catch(err){
-      console.log(err)
-    }
-  }
+  // getdb = async () => {
+  //   try{
+  //     console.log("this is hitting")
+  //     const db = await fetch ("https://api.edamam.com/api/food-database/parser?ingr=orange&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb")
+  //     const parseddb = await db.json()
+  //     console.log(parseddb)
+  //     this.setState({
+  //       checkdb: parseddb.hints[0].food.nutrients.ENERC_KCAL
+  //     })
+  //   }
+  //   catch(err){
+  //     console.log(err)
+  //   }
+  // }
 
-  componentDidMount(){
-    this.getdb()
-  }
+  // componentDidMount(){
+  //   this.getdb()
+  // }
 
   render(){
     return (
       <div className="App">
-        Hi
+        <h1>hello</h1>
+        <NewRecipe />   
       </div>
     )
   }
