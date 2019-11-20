@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import {Button, Form} from "semantic-ui-react"
+import "."
 
 class NewRecipe extends Component{
     state = {

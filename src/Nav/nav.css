@@ -1,0 +1,7 @@
+.nav-row {
+    display: flex
+}
+
+.nav-col {
+    margin: 10px 15px
+}
