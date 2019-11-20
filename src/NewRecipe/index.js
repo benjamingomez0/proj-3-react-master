@@ -18,16 +18,17 @@ class NewRecipe extends Component{
         try{
           console.log("this is hitting")
           e.preventDefault()
-          const query1 = this.state.protein
-          const query2 = this.state.vegetable
-          const db1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${query1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
-          const db2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${query2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
-          const parseddb1 = await db1.json()
-          const parseddb2 = await db2.json()
-          console.log(parseddb1)
-          console.log(parseddb2)
+          //FOOD DATABASE IS BASED ON PER 100G
+          const queryProtein = this.state.protein
+          const queryVegetable = this.state.vegetable
+          const protein = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryProtein}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+          const vegetable = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryVegetable}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+          const parsedProtein = await protein.json()
+          const parsedVegetable = await vegetable.json()
+          console.log(parsedProtein)
+          console.log(parsedVegetable)
           this.setState({
-            cal: parseddb1.hints[0].food.nutrients.ENERC_KCAL + parseddb2.hints[0].food.nutrients.ENERC_KCAL
+            cal: ((parsedProtein.parsed[0].food.nutrients.ENERC_KCAL + parsedVegetable.parsed[0].food.nutrients.ENERC_KCAL)/3.5274).toFixed(2)
           })
         }
         catch(err){
@@ -41,9 +42,10 @@ class NewRecipe extends Component{
                 <h1>Create New Recipe</h1>
                 <form>
                 Protein: <input type="text" name="protein" onChange={this.handleChange}/><br/>
-                Vegetables: <input type="text" name="vegetable" onChange={this.handleChange}/><br/>
+                Vegetable: <input type="text" name="vegetable" onChange={this.handleChange}/><br/>
                 <button onClick={this.getdb}>test</button><br/>
                 </form>
+                Total Calories: {this.state.cal} per ounce
             </div>
         )
     }
