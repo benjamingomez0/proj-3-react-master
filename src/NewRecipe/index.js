@@ -1,10 +1,16 @@
 import React, { Component } from 'react'
+import {Button, Form} from "semantic-ui-react"
 
 class NewRecipe extends Component{
     state = {
-        protein: "",
-        vegetable: "",
-        cal: ""
+        ingredient1: "",
+        ingredient1Amount: "",
+        ingredient2: "",
+        ingredient2Amount: "",
+        ingredient3: "",
+        ingredient3Amount: "",
+        sugar: 0,
+        cal: 0
     }
 
 
@@ -14,21 +20,29 @@ class NewRecipe extends Component{
         })
       }
 
-    getdb = async (e) => {
+    getNutrition = async (e) => {
         try{
           console.log("this is hitting")
           e.preventDefault()
           //FOOD DATABASE IS BASED ON PER 100G
-          const queryProtein = this.state.protein
-          const queryVegetable = this.state.vegetable
-          const protein = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryProtein}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
-          const vegetable = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryVegetable}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
-          const parsedProtein = await protein.json()
-          const parsedVegetable = await vegetable.json()
-          console.log(parsedProtein)
-          console.log(parsedVegetable)
+          const queryIng1 = this.state.ingredient1
+          const queryIng2 = this.state.ingredient2
+          const queryIng3 = this.state.ingredient3
+          const ing1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+          const ing2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+          const ing3 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng3}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+          const parsedIng1 = await ing1.json()
+          const parsedIng2 = await ing2.json()
+          const parsedIng3 = await ing3.json()
+          console.log(parsedIng1)
+          console.log(parsedIng2)
+          console.log(parsedIng3)
           this.setState({
-            cal: ((parsedProtein.parsed[0].food.nutrients.ENERC_KCAL + parsedVegetable.parsed[0].food.nutrients.ENERC_KCAL)/3.5274).toFixed(2)
+            cal: (
+              (parsedIng1.parsed[0].food.nutrients.ENERC_KCAL*this.state.ingredient1Amount*28.3495/100)
+               + (parsedIng2.parsed[0].food.nutrients.ENERC_KCAL*this.state.ingredient2Amount*28.3495/100) 
+               + (parsedIng3.parsed[0].food.nutrients.ENERC_KCAL*this.state.ingredient3Amount*28.3495/100) 
+               + (this.state.sugar*28.3495*387/100)).toFixed(2)
           })
         }
         catch(err){
@@ -39,13 +53,18 @@ class NewRecipe extends Component{
     render(){
         return(
             <div>
-                <h1>Create New Recipe</h1>
-                <form>
-                Protein: <input type="text" name="protein" onChange={this.handleChange}/><br/>
-                Vegetable: <input type="text" name="vegetable" onChange={this.handleChange}/><br/>
-                <button onClick={this.getdb}>test</button><br/>
-                </form>
-                Total Calories: {this.state.cal} per ounce
+                <h1>Create Your Hattrick</h1>
+                <Form>
+                  Ingredient 1: <input type="text" name="ingredient1" onChange={this.handleChange}/>
+                  Amount (oz): <input type="number" name="ingredient1Amount" onChange={this.handleChange}/><br/>
+                  Ingredient 2: <input type="text" name="ingredient2" onChange={this.handleChange}/>
+                  Amount (oz): <input type="number" name="ingredient2Amount" onChange={this.handleChange}/><br/>
+                  Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
+                  Amount (oz): <input type="number" name="ingredient3Amount" onChange={this.handleChange}/><br/>
+                  Sugar Added (oz): <input type="number" name="sugar" onChange={this.handleChange}/><br/>
+                <Button onClick={this.getNutrition}>Hattrick!</Button><br/>
+                </Form>
+                  Total Calories: {this.state.cal}
             </div>
         )
     }
