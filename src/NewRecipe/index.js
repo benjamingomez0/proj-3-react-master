@@ -10,8 +10,8 @@ class NewRecipe extends Component{
         ingredient2Amount: "",
         ingredient3: "",
         ingredient3Amount: "",
-        sugar: 0,
-        cal: 0
+        cal: 0,
+        error: false
     }
 
 
@@ -38,12 +38,36 @@ class NewRecipe extends Component{
           console.log(parsedIng1)
           console.log(parsedIng2)
           console.log(parsedIng3)
-          this.setState({
+          let ing1Cal
+          let ing2Cal
+          let ing3Cal
+          if(parsedIng1.error || parsedIng1.parsed.length === 0){
+            ing1Cal = 0
+          }
+          else {
+            ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
+          }
+
+          if(parsedIng2.error || parsedIng2.parsed.length === 0){
+            ing2Cal = 0
+          }
+          else {
+            ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
+          }
+
+          if(parsedIng3.error || parsedIng3.parsed.length === 0){
+            ing3Cal = 0
+          }
+          else {
+            ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
+          }
+
+          this.setState(
+            {
             cal: (
-              (parsedIng1.parsed[0].food.nutrients.ENERC_KCAL*this.state.ingredient1Amount*28.3495/100)
-               + (parsedIng2.parsed[0].food.nutrients.ENERC_KCAL*this.state.ingredient2Amount*28.3495/100) 
-               + (parsedIng3.parsed[0].food.nutrients.ENERC_KCAL*this.state.ingredient3Amount*28.3495/100) 
-               + (this.state.sugar*28.3495*387/100)).toFixed(2)
+              (ing1Cal*this.state.ingredient1Amount*28.3495/100)
+              + (ing2Cal*this.state.ingredient2Amount*28.3495/100) 
+              + (ing3Cal*this.state.ingredient3Amount*28.3495/100)).toFixed(2)
           })
         }
         catch(err){
@@ -62,8 +86,8 @@ class NewRecipe extends Component{
                     Amount (oz): <input type="number" name="ingredient2Amount" onChange={this.handleChange}/><br/>
                     Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
                     Amount (oz): <input type="number" name="ingredient3Amount" onChange={this.handleChange}/><br/>
-                    Sugar Added (oz): <input type="number" name="sugar" onChange={this.handleChange}/><br/>
                   <Button onClick={this.getNutrition}>Hattrick!</Button><br/>
+                  {/* <div style={{display: "hidden"}}>Error</div> */}
                 </Form>
                   Total Calories: {this.state.cal}
             </div>

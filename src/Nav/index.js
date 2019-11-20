@@ -3,18 +3,18 @@ import "./nav.css"
 
 function NavBar () {
     return(
-        <div class="nav-row">
-            <div class="nav-col">
-                <a class="nav-anchor" href="#">Home</a>
+        <div className="nav-row">
+            <div className="nav-col">
+                <a className="nav-anchor" href="#">Home</a>
             </div>
-            <div class="nav-col">
-                <a class="nav-anchor" href="#">Create Recipe</a>
+            <div className="nav-col">
+                <a className="nav-anchor" href="#">Create Recipe</a>
             </div>
-            <div class="nav-col">
-                <a class="nav-anchor" href="#">Explore</a>
+            <div className="nav-col">
+                <a className="nav-anchor" href="#">Explore</a>
             </div>
-            <div class="nav-col">
-                <a class="nav-anchor" href="#">Login/Register</a>
+            <div className="nav-col">
+                <a className="nav-anchor" href="#">Login/Register</a>
             </div>
         </div>
     )
