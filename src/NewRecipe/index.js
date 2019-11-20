@@ -54,7 +54,6 @@ class NewRecipe extends Component{
             this.setState({
               loading: true
             })
-            console.log("this is hitting")
             e.preventDefault()
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.ingredient1
