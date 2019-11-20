@@ -30,23 +30,23 @@ class NewRecipe extends Component{
         })
       }
     
-    handleSubmit = async (e) => {
-      e.preventDefault
-      try{
-        const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/new-recipe`, {
-          method: "POST",
-          body: JSON.stringify(this.state),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        })
-        const parsedResponse = await newRecipeResponse.json()
-        console.log(parsedResponse)
-      }
-      catch(err){
-        console.log(err)
-      }
-    }
+    // handleSubmit = async (e) => {
+    //   e.preventDefault
+    //   try{
+    //     const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/new-recipe`, {
+    //       method: "POST",
+    //       body: JSON.stringify(this.state),
+    //       headers: {
+    //         "Content-Type": "application/json"
+    //       }
+    //     })
+    //     const parsedResponse = await newRecipeResponse.json()
+    //     console.log(parsedResponse)
+    //   }
+    //   catch(err){
+    //     console.log(err)
+    //   }
+    // }
 
 
     getNutrition = async (e) => {
