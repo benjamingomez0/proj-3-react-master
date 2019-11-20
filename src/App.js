@@ -3,6 +3,10 @@ import NewRecipe from "./NewRecipe"
 import './App.css';
 import Register from './Register'
 
+import NavBar from "./Nav"
+
+
+
 class App extends Component {
   state = {
     currentUser:{}
@@ -16,8 +20,10 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        {/* <NewRecipe />  */}
         <Register />
+        <NavBar />
+        <NewRecipe />   
+
       </div>
     )
   }

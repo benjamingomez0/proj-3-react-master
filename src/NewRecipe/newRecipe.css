@@ -1,0 +1,43 @@
+form{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.error{
+    color: red
+}
+
+#new-recipe-header{
+    color:  rgb(68, 177, 250)
+}
+
+input {
+    margin: 10px;
+}
+
+textarea {
+    margin: 10px;
+}
+
+button {
+    margin: 10px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(68, 177, 250) ;
+    color: white;
+    font-size: 20px
+}
+
+#cal-total {
+    margin: 10px;
+}
+
+/* #new-recipe-container{
+    background-image: url("./images/ingredients.jpg");
+    background-size: cover;
+    height: 100vh
+}
+
+#new-recipe-background-layer{
+    background-color: rgba(255, 255, 255, .2)
+} */
