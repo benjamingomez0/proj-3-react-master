@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewRecipe from "./NewRecipe"
 import './App.css';
+import NavBar from "./Nav"
 
 const apiKey = "385e19ba163511e02698e7299dab66fb"
 
@@ -33,6 +34,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+        <NavBar />
         <NewRecipe />   
       </div>
     )
