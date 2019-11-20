@@ -1,5 +1,6 @@
 form{
     font-family: Arial, Helvetica, sans-serif;
+    color: white
 }
 
 .error{
@@ -7,37 +8,47 @@ form{
 }
 
 #new-recipe-header{
-    color:  rgb(68, 177, 250)
+    color:  white
 }
 
 input {
     margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
 }
 
 textarea {
     margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    width: 80%
 }
 
-button {
+#new-recipe-button {
     margin: 10px;
     padding: 5px 10px;
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     background-color: rgb(68, 177, 250) ;
     color: white;
-    font-size: 20px
+    font-size: 20px;
+    border: none;
 }
 
 #cal-total {
     margin: 10px;
 }
 
-/* #new-recipe-container{
+#new-recipe-container{
     background-image: url("./images/ingredients.jpg");
     background-size: cover;
-    height: 100vh
+    height: 100%;
+    padding-top: 30px;
 }
 
 #new-recipe-background-layer{
-    background-color: rgba(255, 255, 255, .2)
-} */
+    background-color: rgba(0, 0, 0, .5);
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px;
+}
