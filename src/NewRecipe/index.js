@@ -56,14 +56,14 @@ class NewRecipe extends Component{
             <div>
                 <h1>Create Your Hattrick</h1>
                 <Form>
-                  Ingredient 1: <input type="text" name="ingredient1" onChange={this.handleChange}/>
-                  Amount (oz): <input type="number" name="ingredient1Amount" onChange={this.handleChange}/><br/>
-                  Ingredient 2: <input type="text" name="ingredient2" onChange={this.handleChange}/>
-                  Amount (oz): <input type="number" name="ingredient2Amount" onChange={this.handleChange}/><br/>
-                  Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
-                  Amount (oz): <input type="number" name="ingredient3Amount" onChange={this.handleChange}/><br/>
-                  Sugar Added (oz): <input type="number" name="sugar" onChange={this.handleChange}/><br/>
-                <Button onClick={this.getNutrition}>Hattrick!</Button><br/>
+                    Ingredient 1: <input type="text" name="ingredient1" onChange={this.handleChange}/>
+                    Amount (oz): <input type="number" name="ingredient1Amount" onChange={this.handleChange}/><br/>
+                    Ingredient 2: <input type="text" name="ingredient2" onChange={this.handleChange}/>
+                    Amount (oz): <input type="number" name="ingredient2Amount" onChange={this.handleChange}/><br/>
+                    Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
+                    Amount (oz): <input type="number" name="ingredient3Amount" onChange={this.handleChange}/><br/>
+                    Sugar Added (oz): <input type="number" name="sugar" onChange={this.handleChange}/><br/>
+                  <Button onClick={this.getNutrition}>Hattrick!</Button><br/>
                 </Form>
                   Total Calories: {this.state.cal}
             </div>
