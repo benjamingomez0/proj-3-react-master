@@ -29,8 +29,10 @@ class NewRecipe extends Component{
           const queryIng2 = this.state.ingredient2
           const queryIng3 = this.state.ingredient3
           const ing1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+          console.log(`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`, "this is query 1")
           const ing2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
           const ing3 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng3}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
+      
           const parsedIng1 = await ing1.json()
           const parsedIng2 = await ing2.json()
           const parsedIng3 = await ing3.json()
