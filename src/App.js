@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewRecipe from "./NewRecipe"
 import './App.css';
 import Register from './Register'
-import UserShow from "./User"
+import UserShow from "./ShowUser"
 import NavBar from "./Nav"
 import Login from "./Login"
 
@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <NavBar />
+        <NavBar currentUser={this.state.currentUser}/>
         <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>  
          <NewRecipe UserId={this.state.currentUser.id}/>   
         <UserShow user={this.state.currentUser}/>
