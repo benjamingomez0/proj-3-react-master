@@ -12,16 +12,18 @@ class App extends Component {
 
   doUpdateCurrentUser=user=>{
     this.setState({
-      currentUser : user
+      currentUser : user.data
     })
   }
   render(){
     return (
       <div className="App">
+
         <NavBar />
-        <Register />
         {/* <NewRecipe />    */}
         {/* <UserShow user={this.state.currentUser}/> */}
+        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>
+        
       </div>
     )
   }
