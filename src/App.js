@@ -22,7 +22,7 @@ class App extends Component {
       <div className="App">
         <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>
         {/* <NavBar /> */}
-        <NewRecipe UserId={this.state}/>   
+        <NewRecipe UserId={this.state.currentUser.id}/>   
 
       </div>
     )

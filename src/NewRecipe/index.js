@@ -22,7 +22,6 @@ class NewRecipe extends Component{
         error2: "",
         error3: "",
         loading: false,
-        UserId:this.props.id
     }
 
     handleChange = (e) => {
@@ -104,6 +103,9 @@ class NewRecipe extends Component{
               loading: false
             })
             console.log('hitting', '<===hit before pushing to db')
+            this.setState({
+              UserId: this.props.UserId
+            })
               const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/recipes/`, {
                 method: "POST",
                 body: JSON.stringify(this.state),
@@ -112,7 +114,9 @@ class NewRecipe extends Component{
                 }
               })
               const parsedResponse = await newRecipeResponse.json()
-              // console.log(parsedResponse)
+              console.log(parsedResponse,'new recipe parsed JSON')
+            
+              
             
           }
         catch(err){
