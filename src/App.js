@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import NewRecipe from "./NewRecipe"
 import './App.css';
 import Register from './Register'
-
+import UserShow from "./User"
 import NavBar from "./Nav"
-
-
 
 class App extends Component {
   state = {
@@ -20,10 +18,10 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <Register />
         <NavBar />
-        <NewRecipe />   
-
+        <Register />
+        {/* <NewRecipe />    */}
+        <UserShow user={this.state.currentUser}/>
       </div>
     )
   }
