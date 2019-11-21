@@ -102,7 +102,6 @@ class NewRecipe extends Component{
                 + (ing3Cal*this.state.ingredient3Amount*28.3495/100)))/this.state.servings).toFixed(2)),
               loading: false
             })
-            console.log('hitting', '<===hit before pushing to db')
             this.setState({
               UserId: this.props.UserId
             })

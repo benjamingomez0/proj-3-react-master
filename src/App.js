@@ -6,6 +6,8 @@ import UserShow from "./User"
 import NavBar from "./Nav"
 import Login from "./Login"
 
+import RecipeContainer from './RecipeContainer'
+
 class App extends Component {
   state = {
     currentUser:{}
@@ -21,11 +23,11 @@ class App extends Component {
       <div className="App">
 
         <NavBar />
-        <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>
+        <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>  
          <NewRecipe UserId={this.state.currentUser.id}/>   
-        {/* <UserShow user={this.state.currentUser}/> */}
-        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>   
-
+        <UserShow user={this.state.currentUser}/>
+        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
+        <RecipeContainer />
       </div>
     )
   }
