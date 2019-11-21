@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
 
-        <NavBar />
+        <NavBar currentUser={this.state.currentUser}/>
         <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>  
          <NewRecipe UserId={this.state.currentUser.id}/>   
         <UserShow user={this.state.currentUser}/>

@@ -6,13 +6,10 @@ class UserShow extends Component {
         user: {},
         userRecipes: {}
     }
-
-
-
     async componentDidMount(){
         // console.log(this.props.match.params.id)
         // const userId = this.props.match.params.id
-        const userId = 1
+        const userId = this.props.user.id
         const reqUser = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`)
         // const reqUserRecipes = await fetch (`${process.env.REACT_APP_API_URL}/recipes`)
         const parsedUser = await reqUser.json()
@@ -28,7 +25,7 @@ class UserShow extends Component {
         return(
             <div id="show-user-container">
                 <div id="welcome-row">
-                    <h1 id="welcome-message">Hello, {this.state.user.first_name}</h1>
+                    <h1 id="welcome-message">Hello, {this.props.user.first_name}</h1>
                 </div>
                 <div id="your-recipes-row">
                     Your Recipes:
@@ -36,7 +33,7 @@ class UserShow extends Component {
                 <div id="user-recipes-container">
                     <div id="user-recipes-row">
                         <div id="user-recipes-col">
-                            abc
+                         show page for recipe here
                         </div>
                     </div>
                 </div>
