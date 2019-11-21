@@ -9,7 +9,12 @@ import NavBar from "./Nav"
 
 class App extends Component {
   state = {
-    currentUser:{}
+    currentUser:{
+      id:'',
+      first_name:'',
+      last_name:'',
+      username:''
+    }
   }
 
   doUpdateCurrentUser=user=>{
@@ -20,9 +25,9 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        {/* <Register /> */}
-        <NavBar />
-        <NewRecipe />   
+        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>
+        {/* <NavBar />
+        <NewRecipe />    */}
 
       </div>
     )
