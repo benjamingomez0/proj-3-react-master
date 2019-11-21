@@ -1,0 +1,18 @@
+#user-recipes-container{
+    width: 100%;
+}
+
+#user-recipes-row{
+    width: 100%;
+    display: flex
+}
+
+#user-recipes-col{
+    margin: 15px;
+    padding: 15px;
+}
+
+#your-recipes-row{
+    text-align: left;
+    padding: 15px
+}
