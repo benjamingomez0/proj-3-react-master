@@ -26,12 +26,12 @@ class Login extends Component {
         const parsedResponse = await loginResponse.json()
         console.log(parsedResponse)
         console.log(loginResponse)
-        // if(parsedResponse.status.message === "Success"){
-        //     console.log("logged in")
-        // }
-        // else{
-        //     console.log("not logged in")
-        // }
+        if(parsedResponse.status.message === "success"){
+            console.log("logged in")
+        }
+        else{
+            console.log("not logged in")
+        }
     }
 
     render(){

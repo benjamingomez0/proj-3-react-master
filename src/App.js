@@ -20,7 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <Register />
+        {/* <Register /> */}
         <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>
         {/* <NewRecipe />    */}
         {/* <UserShow user={this.state.currentUser}/> */}
