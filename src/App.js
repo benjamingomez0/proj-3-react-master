@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import NewRecipe from "./NewRecipe"
 import './App.css';
 import Register from './Register'
-import UserShow from "./User"
+import UserShow from "./ShowUser"
 import NavBar from "./Nav"
 import Login from "./Login"
 
