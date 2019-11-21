@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import "./register.css"
 
 class Register extends Component{
     state={
@@ -24,21 +25,24 @@ class Register extends Component{
             }
         })
         
-        const parsedResponse = await registerResponse.json();
+       const parsedResponse = await registerResponse.json();
        this.props.doUpdateCurrentUser(parsedResponse)
+
     }
     //remember to change input to email where appropriate
     render(){
         return(
-            <div>
-                <h1>Register</h1>
-                <form onSubmit= {this.handleSubmit}>
-                    Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
-                    First Name: <input type= 'text' name='first_name' onChange={this.handleChange}/><br/>
-                    Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
-                    Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
-                    <input type='submit'/>
-                </form>
+            <div id="register-container">
+                <div id="register-layer">
+                    <h1 id="register-header">Register</h1>
+                    <form id="register-form" onSubmit= {this.handleSubmit}>
+                        Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
+                        First Name: <input type= 'text' name='first_name' onChange={this.handleChange}/><br/>
+                        Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
+                        Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
+                        <button id="register-button" type='submit'>Submit</button>
+                    </form>
+                </div>
             </div>
         )
 
