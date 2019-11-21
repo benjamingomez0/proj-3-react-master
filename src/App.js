@@ -9,17 +9,12 @@ import NavBar from "./Nav"
 
 class App extends Component {
   state = {
-    currentUser:{
-      id:'',
-      first_name:'',
-      last_name:'',
-      username:''
-    }
+    currentUser:{}
   }
 
   doUpdateCurrentUser=user=>{
     this.setState({
-      currentUser : user
+      currentUser : user.data
     })
   }
   render(){
