@@ -26,6 +26,7 @@ class Register extends Component{
         })
         console.log(process.env.REACT_APP_API_URL, "<==== process env")
         const parsedResponse = await registerResponse.json();
+        console.log(parsedResponse)
         // if(parsedResponse.status.message==='Success')
         // {
         //     // tell app component that modal is no longer up

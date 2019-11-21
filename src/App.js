@@ -4,6 +4,7 @@ import './App.css';
 import Register from './Register'
 import UserShow from "./User"
 import NavBar from "./Nav"
+import Login from "./Login"
 
 class App extends Component {
   state = {
@@ -20,6 +21,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <Register />
+        <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>
         {/* <NewRecipe />    */}
         {/* <UserShow user={this.state.currentUser}/> */}
       </div>
