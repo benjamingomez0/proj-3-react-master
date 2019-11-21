@@ -35,14 +35,14 @@ class Login extends Component {
         }
     }
 
-    render(){
+    render(props){
         return(
             <div>
                 <h1>Log In</h1>
                 <form onSubmit={this.handleSubmit}>
                     Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
                     Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
-                    <button type="submit">Submit</button>
+                    <button type="submit" >Submit</button>
                 </form>
             </div>
         )

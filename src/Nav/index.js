@@ -20,7 +20,7 @@ function NavBar (props) {
                     <span>Hello, {props.currentUser.first_name}</span>
                     <a className="nav-anchor" href="#"> Logout</a>
                     </>:
-                    <a className="nav-anchor" href="#">Login/Register</a>
+                    <button  onClick ={props.showLoginModal}>Login/Register</button>
                     }
             </div>
         </div>

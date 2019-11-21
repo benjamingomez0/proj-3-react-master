@@ -10,21 +10,37 @@ import RecipeContainer from './RecipeContainer'
 
 class App extends Component {
   state = {
-    currentUser:{}
+    currentUser:{},
+    loginModal:false
   }
 
   doUpdateCurrentUser=user=>{
     this.setState({
-      currentUser : user.data
+      currentUser : user.data,
+      loginModal:false
     })
   }
+  showLoginModal=()=>{
+    this.setState({
+      loginModal:true
+    })
+  }
+  hideLoginModal=()=>{
+    this.setState({
+      loginModal:false
+    })
+  }
+  
   render(){
     return (
       <div className="App">
 
-        <NavBar currentUser={this.state.currentUser}/>
-        
-        <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>  
+        <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser}/>
+        {
+          this.state.loginModal?
+        <Login  doUpdateCurrentUser={this.doUpdateCurrentUser}/> :null
+        }
+
          <NewRecipe UserId={this.state.currentUser.id}/>   
         <UserShow user={this.state.currentUser}/>
         
