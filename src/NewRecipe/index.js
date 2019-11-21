@@ -22,7 +22,7 @@ class NewRecipe extends Component{
         error2: "",
         error3: "",
         loading: false,
-        // UserId:this.props.id
+        UserId:this.props.id
     }
 
     handleChange = (e) => {

@@ -21,8 +21,8 @@ class App extends Component {
     return (
       <div className="App">
         <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>
-        {/* <NavBar />
-        <NewRecipe />    */}
+        {/* <NavBar /> */}
+        <NewRecipe UserId={this.state}/>   
 
       </div>
     )
