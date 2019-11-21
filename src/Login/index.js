@@ -28,6 +28,7 @@ class Login extends Component {
         console.log(loginResponse)
         if(parsedResponse.status.message === "success"){
             console.log("logged in")
+            this.props.doUpdateCurrentUser(parsedResponse)
         }
         else{
             console.log("not logged in")

@@ -19,11 +19,13 @@ class App extends Component {
   render(){
     return (
       <div className="App">
+
         <NavBar />
-        {/* <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/> */}
-        <NewRecipe />   
-        {/* <UserShow user={this.state.currentUser}/> */}
+        {/* <Login doUpdateCurrentUser={this.doUpdateCurrentUser}/>
+        <NewRecipe UserId={this.state.currentUser.id}/>    */}
+        <UserShow user={this.state.currentUser}/>
         {/* <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    */}
+
       </div>
     )
   }

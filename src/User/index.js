@@ -7,7 +7,7 @@ class UserShow extends Component {
     async componentDidMount(){
         // console.log(this.props.match.params.id)
         // const userId = this.props.match.params.id
-        const userId = 5
+        const userId = 3
         const reqUser = await fetch(`${process.env.REACT_APP_API_URL}/users/${userId}`)
         const parsedUser = await reqUser.json()
         console.log(parsedUser)
@@ -18,7 +18,7 @@ class UserShow extends Component {
     render(){
         return(
             <div>
-                {this.state.user.id}
+                {this.state.user.email}
             </div>
         )
     }
