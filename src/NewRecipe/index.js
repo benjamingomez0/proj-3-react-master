@@ -21,7 +21,8 @@ class NewRecipe extends Component{
         error1: "",
         error2: "",
         error3: "",
-        loading: false
+        loading: false,
+        // UserId:this.props.id
     }
 
     handleChange = (e) => {
@@ -29,26 +30,6 @@ class NewRecipe extends Component{
           [e.currentTarget.name]: e.currentTarget.value
         })
       }
-    
-    // handleSubmit = async (e) => {
-    //   e.preventDefault
-    //   try{
-    //     const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/new-recipe`, {
-    //       method: "POST",
-    //       body: JSON.stringify(this.state),
-    //       headers: {
-    //         "Content-Type": "application/json"
-    //       }
-    //     })
-    //     const parsedResponse = await newRecipeResponse.json()
-    //     console.log(parsedResponse)
-    //   }
-    //   catch(err){
-    //     console.log(err)
-    //   }
-    // }
-
-
     getNutrition = async (e) => {
         try{
             this.setState({
@@ -122,10 +103,22 @@ class NewRecipe extends Component{
                 + (ing3Cal*this.state.ingredient3Amount*28.3495/100)))/this.state.servings).toFixed(2)),
               loading: false
             })
+            console.log('hitting', '<===hit before pushing to db')
+              const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/recipes/`, {
+                method: "POST",
+                body: JSON.stringify(this.state),
+                headers: {
+                  "Content-Type": "application/json"
+                }
+              })
+              const parsedResponse = await newRecipeResponse.json()
+              // console.log(parsedResponse)
+            
           }
         catch(err){
           console.log(err)
         }
+       
       }
 
     render(){
