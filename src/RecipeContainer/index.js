@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import RecipeList from '../RecipeList'
-
+import RecipeShow from '../RecipeShow'
 class RecipeContainer extends Component{
     state={
         recipes:[]
@@ -24,7 +24,10 @@ class RecipeContainer extends Component{
     }
     render(){
     return(
+        <>
         <RecipeList recipes = {this.state.recipes}/>
+        <RecipeShow />
+        </>
     )
     }
 }
