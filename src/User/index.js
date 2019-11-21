@@ -18,7 +18,7 @@ class UserShow extends Component {
     render(){
         return(
             <div>
-                {this.state.user.email}
+                {this.state.user.id}
             </div>
         )
     }

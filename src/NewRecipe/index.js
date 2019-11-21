@@ -133,7 +133,7 @@ class NewRecipe extends Component{
             <div id="new-recipe-container">
               <div id="new-recipe-background-layer">
                 <h1 id="new-recipe-header">Create Your Hattrick</h1>
-                <form>
+                <form id="new-recipe-form">
                     Recipe Name: <input type="text" name="recipeName" onChange={this.handleChange}/><br/>
                     Ingredient 1: <input type="text" name="ingredient1" onChange={this.handleChange}/>
                     <input placeholder="Ounces" type="number" min="0" name="ingredient1Amount" onChange={this.handleChange}/><br/>
