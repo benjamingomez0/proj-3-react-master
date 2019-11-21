@@ -17,7 +17,12 @@ class RecipeShow extends Component{
     render(){
         return(
             <div>
-            hitting    
+            <h1>{this.state.recipe.recipeName}</h1>
+            <ul>
+            <li>{this.state.recipe.ingredient1}:                    {this.state.recipe.ingredient1Amount}</li>
+            <li>{this.state.recipe.ingredient2}:                    {this.state.recipe.ingredient2Amount}</li>
+            <li>{this.state.recipe.ingredient3}:                    {this.state.recipe.ingredient3Amount}</li>
+            </ul>
             </div>
         )
     }
