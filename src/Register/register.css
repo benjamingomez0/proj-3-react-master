@@ -1,0 +1,43 @@
+#register-form{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white
+}
+
+.error{
+    color: red
+}
+
+#register-header{
+    color:  white
+}
+
+input {
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+#register-button {
+    margin: 10px;
+    padding: 5px 10px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(68, 177, 250) ;
+    color: white;
+    font-size: 20px;
+    border: none;
+}
+
+#register-container{
+    background-image: url("./images/register-ingredients.jpg");
+    background-size: cover;
+    height: 100%;
+    padding-top: 30px;
+}
+
+#register-layer{
+    background-color: rgba(0, 0, 0, .4);
+    width: 80%;
+    margin: 0 auto;
+    padding: 15px;
+}

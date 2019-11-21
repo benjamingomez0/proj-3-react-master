@@ -21,7 +21,7 @@ class App extends Component {
         <NavBar />
         <Register />
         {/* <NewRecipe />    */}
-        <UserShow user={this.state.currentUser}/>
+        {/* <UserShow user={this.state.currentUser}/> */}
       </div>
     )
   }
