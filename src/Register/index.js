@@ -25,8 +25,9 @@ class Register extends Component{
             }
         })
         
-        const parsedResponse = await registerResponse.json();
+       const parsedResponse = await registerResponse.json();
        this.props.doUpdateCurrentUser(parsedResponse)
+
     }
     //remember to change input to email where appropriate
     render(){
