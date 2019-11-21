@@ -24,16 +24,10 @@ class Register extends Component{
                 'Content-Type':'application/json'
             }
         })
-        console.log(process.env.REACT_APP_API_URL, "<==== process env")
-        const parsedResponse = await registerResponse.json();
-        console.log(parsedResponse)
-        // if(parsedResponse.status.message==='Success')
-        // {
-        //     // tell app component that modal is no longer up
+        
+       const parsedResponse = await registerResponse.json();
+       this.props.doUpdateCurrentUser(parsedResponse)
 
-        //     this.props.doUpdateCurrentUser(parsedResponse.data)
-            
-        // }
     }
     //remember to change input to email where appropriate
     render(){
