@@ -1,18 +1,16 @@
-import React, {Component} from 'react'
-
+import React, {Component} from "react"
 class RecipeShow extends Component{
     state={
         recipe:{
         }
     }
-
     async componentDidMount(){
-    const recipeId=2
+    const recipeId=1
+
      const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
      const parsedRecipe = await reqRecipe.json()
      console.log(parsedRecipe)
      this.setState({recipe:parsedRecipe.data})
-
     }
     render(){
         return(
@@ -27,7 +25,5 @@ class RecipeShow extends Component{
             </div>
         )
     }
-
 }
-
 export default RecipeShow
