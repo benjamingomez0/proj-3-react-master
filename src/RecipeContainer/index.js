@@ -63,7 +63,7 @@ class RecipeContainer extends Component{
         console.log('hit')
         e.preventDefault();
         try {
-            const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/recipes/${this.state.recipeToEdit.id}`, {
+            const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
                 method: 'PUT',
                 body: JSON.stringify(this.state.recipeToEdit),
                 headers: {
@@ -89,11 +89,11 @@ class RecipeContainer extends Component{
 
     render(){
     return(
-        <>
+        <div>
         <RecipeList recipes = {this.state.recipes}/>
         <RecipeShow openAndEdit={this.openAndEdit}/>
-        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit}/>
-        </>
+        {/* <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit}/> */}
+        </div>
     )
     }
 }
