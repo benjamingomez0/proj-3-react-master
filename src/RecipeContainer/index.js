@@ -62,7 +62,6 @@ class RecipeContainer extends Component{
     closeAndEdit = async (e) => {
         
         e.preventDefault();
-        debugger
         this.getNutrition()
         try {
             const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
@@ -87,7 +86,13 @@ class RecipeContainer extends Component{
             console.log(err, 'this is error edit')
         }
     }
-
+    deleteRecipe = async (id) => {
+        const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
+            method: 'DELETE'
+        });
+        await deleteRecipeResponse.json();
+        this.setState({recipes: this.state.recipes.filter((recipe) => recipe.id !== id )})
+    }
     getNutrition = async () => {
         try{
             //FOOD DATABASE IS BASED ON PER 100G
@@ -102,9 +107,7 @@ class RecipeContainer extends Component{
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
-            // console.log(parsedIng1)
-            // console.log(parsedIng2)
-            // console.log(parsedIng3)
+          
             let ing1Cal
             let ing2Cal
             let ing3Cal
@@ -167,7 +170,7 @@ class RecipeContainer extends Component{
         <div>
         <RecipeList recipes = {this.state.recipes}/>
         <RecipeShow openAndEdit={this.openAndEdit}/>
-        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition}/>
+        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
         </div>
     )
     }

@@ -22,7 +22,8 @@ const EditRecipe = (props) => {
                 <div className="loader">
                     {/* <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={this.state.loading}/> */}
                 </div>
-                <button id="edit-recipe-button" type='submit'>Hattrick!</button><br/>
+                <button id="edit-recipe-button" type='submit'>Hattrick!</button>
+                <button onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
             </form>
         </div>  
     )
