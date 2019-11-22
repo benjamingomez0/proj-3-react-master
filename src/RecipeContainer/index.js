@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import RecipeList from '../RecipeList'
 import RecipeShow from '../RecipeShow'
 import RecipeEdit from '../RecipeEdit'
-import {PulseLoader} from "react-spinners"
+
 
 class RecipeContainer extends Component{
     state={
@@ -91,8 +91,8 @@ class RecipeContainer extends Component{
     return(
         <>
         <RecipeList recipes = {this.state.recipes}/>
-        <RecipeShow />
-        <RecipeEdit />
+        <RecipeShow openAndEdit={this.openAndEdit}/>
+        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit}/>
         </>
     )
     }
