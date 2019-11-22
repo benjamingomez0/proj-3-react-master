@@ -23,6 +23,7 @@ class RecipeShow extends Component{
             <li>{this.state.recipe.ingredient2}:                    {this.state.recipe.ingredient2Amount}</li>
             <li>{this.state.recipe.ingredient3}:                    {this.state.recipe.ingredient3Amount}</li>
             </ul>
+            <button>Edit</button>
             </div>
         )
     }
