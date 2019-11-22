@@ -7,9 +7,9 @@ class RecipeShow extends Component{
     }
 
     async componentDidMount(){
-    const recipeId=2
-     const reqRecipie = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
-     const parsedRecipe = await reqRecipie.json()
+    const recipeId=3
+     const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
+     const parsedRecipe = await reqRecipe.json()
      console.log(parsedRecipe)
      this.setState({recipe:parsedRecipe.data})
 
@@ -23,6 +23,7 @@ class RecipeShow extends Component{
             <li>{this.state.recipe.ingredient2}:                    {this.state.recipe.ingredient2Amount}</li>
             <li>{this.state.recipe.ingredient3}:                    {this.state.recipe.ingredient3Amount}</li>
             </ul>
+            <button onClick ={()=>{this.props.openAndEdit(this.state.recipe)}}>Edit</button>
             </div>
         )
     }
