@@ -48,6 +48,7 @@ class RecipeShow extends Component{
         }
     }
     deleteRecipe = async (id) => {
+        
         const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
             method: 'DELETE'
         });
@@ -144,7 +145,7 @@ class RecipeShow extends Component{
                 show: !this.state.show
             })}}>Edit</button>
             <div style={{'display' : this.state.show ? "block" : "none"}} >
-                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.props.deleteRecipe} loading={this.state.loading}/>
+                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading}/>
             </div>
             </div>
         )
