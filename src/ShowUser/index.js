@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import "./showUser.css"
+import UserRecipeList from "../UserRecipeList"
 
 class UserShow extends Component {
     state = {
@@ -21,6 +22,11 @@ class UserShow extends Component {
             // userRecipes: parsedUserRecipes.data
         })
     }
+
+    getRecipes (){
+        const userId = this.props.user.id
+    }
+
     render(){
         return(
             <div id="show-user-container">
@@ -33,7 +39,6 @@ class UserShow extends Component {
                 <div id="user-recipes-container">
                     <div id="user-recipes-row">
                         <div id="user-recipes-col">
-                         show page for recipe here
                         </div>
                     </div>
                 </div>

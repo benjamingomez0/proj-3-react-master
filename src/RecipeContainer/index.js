@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import RecipeList from '../RecipeList'
 import RecipeShow from '../RecipeShow'
 import RecipeEdit from '../RecipeEdit'
+import Register from '../Register'
+import UserShow from "../ShowUser"
+import NavBar from "../Nav"
+import Login from "../Login"
+import NewRecipe from "../NewRecipe"
 
 
 class RecipeContainer extends Component{
@@ -23,9 +28,28 @@ class RecipeContainer extends Component{
             directions: "",
             id: ""
         },
+        currentUser:{},
+        loginModal:false,
         showEditModal: false
       }
     
+      doUpdateCurrentUser=user=>{
+        this.setState({
+          currentUser : user.data,
+          loginModal:false
+        })
+      }
+      showLoginModal=()=>{
+        this.setState({
+          loginModal:true
+        })
+      }
+      hideLoginModal=()=>{
+        this.setState({
+          loginModal:false
+        })
+      }
+
     componentDidMount(){
         this.getRecipes()
     }
@@ -168,9 +192,31 @@ class RecipeContainer extends Component{
     render(){
     return(
         <div>
+        <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser}/>
+
+        {
+          this.state.loginModal?
+        <Login  doUpdateCurrentUser={this.doUpdateCurrentUser}/> :null
+        }
+
+         <NewRecipe UserId={this.state.currentUser.id}/>   
+        <UserShow user={this.state.currentUser}/>
+        
+        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
+
+
+
+
+
+
         <RecipeList recipes = {this.state.recipes}/>
         <RecipeShow openAndEdit={this.openAndEdit}/>
         <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
+
+
+
+
+
         </div>
     )
     }
