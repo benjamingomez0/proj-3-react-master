@@ -92,7 +92,7 @@ class RecipeContainer extends Component{
         <div>
         <RecipeList recipes = {this.state.recipes}/>
         <RecipeShow openAndEdit={this.openAndEdit}/>
-        {/* <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit}/> */}
+        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit}/>
         </div>
     )
     }
