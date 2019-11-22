@@ -3,6 +3,7 @@ import './App.css';
 import RecipeContainer from './RecipeContainer'
 import NavBar from './Nav'
 import {Route, Switch} from 'react-router-dom'
+import RecipeShow from './RecipeShow'
 
 class App extends Component{
   state={
@@ -33,7 +34,8 @@ class App extends Component{
           
           <Switch>
             <Route exact path ='/' render={()=> <RecipeContainer doUpdateCurrentUser ={this.doUpdateCurrentUser} currentUser={this.state.currentUser}/> }/>
-            
+            <Route exact path='/recipes/:id' render={() => <RecipeShow />} />
+            <Route exact path='/recipes/:id/edit' render={() => <div>this is the edit Component</div>} />
           </Switch>
         </div>
       )

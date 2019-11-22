@@ -7,28 +7,13 @@ import NavBar from "../Nav"
 import Login from "../Login"
 import NewRecipe from "../NewRecipe"
 import ShowUser from "../ShowUser"
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 class RecipeContainer extends Component{
     state={
         recipes:[],
-        recipeToEdit: {
-            recipeName: "",
-            ingredient1: "",
-            ingredient1Amount: "",
-            ingredientId1:"",
-            ingredient2: "",
-            ingredient2Amount: "",
-            ingredientId2:"",
-            ingredient3: "",
-            ingredient3Amount: "",
-            ingredientId3:"",
-            cal: 0,
-            servings: 1,
-            directions: "",
-            id: ""
-        },
+
         userRecipes:[],
         
         showEditModal: false
@@ -48,13 +33,7 @@ class RecipeContainer extends Component{
             recipes:
             parsedRecipes.data
         })
-        // for(let i = 0; i < parsedRecipes.data.length; i++){
-        //   if(Number(parsedRecipes.data[i].UserId) === this.props.currentUser.id){
-        //     this.setState({
-        //       userRecipes: [...this.state.userRecipes, parsedRecipes.data[i]]
-        //     })
-        //   }
-        // }
+      
         }
         catch(err)
         {
@@ -69,41 +48,41 @@ class RecipeContainer extends Component{
             }
         });
     }
-    handleEditChange = (e) => {
-        this.setState({
-            recipeToEdit: {
-                ...this.state.recipeToEdit,
-                [e.currentTarget.name]: e.currentTarget.value
-            }
-        });
-    }
-    closeAndEdit = async (e) => {
+    // handleEditChange = (e) => {
+    //     this.setState({
+    //         recipeToEdit: {
+    //             ...this.state.recipeToEdit,
+    //             [e.currentTarget.name]: e.currentTarget.value
+    //         }
+    //     });
+    // }
+    // closeAndEdit = async (e) => {
         
-        e.preventDefault();
-        this.getNutrition()
-        try {
-            const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
-                method: 'PUT',
-                body: JSON.stringify(this.state.recipeToEdit),
-                headers: {
-                  'Content-Type': 'application/json'
-                } 
-            })
-            const editResponseParsed = await editResponse.json()
-            const newRecipeArrayWithEdit = this.state.recipes.map(recipe => {
-                if(recipe.id === editResponseParsed.data.id) {
-                    recipe = editResponseParsed.data
-                }
-                return recipe
-            });
-            this.setState({
-                showEditModal: false,
-                recipes: newRecipeArrayWithEdit
-              });
-        }catch(err) {
-            console.log(err, 'this is error edit')
-        }
-    }
+    //     e.preventDefault();
+    //     this.getNutrition()
+    //     try {
+    //         const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
+    //             method: 'PUT',
+    //             body: JSON.stringify(this.state.recipeToEdit),
+    //             headers: {
+    //               'Content-Type': 'application/json'
+    //             } 
+    //         })
+    //         const editResponseParsed = await editResponse.json()
+    //         const newRecipeArrayWithEdit = this.state.recipes.map(recipe => {
+    //             if(recipe.id === editResponseParsed.data.id) {
+    //                 recipe = editResponseParsed.data
+    //             }
+    //             return recipe
+    //         });
+    //         this.setState({
+    //             showEditModal: false,
+    //             recipes: newRecipeArrayWithEdit
+    //           });
+    //     }catch(err) {
+    //         console.log(err, 'this is error edit')
+    //     }
+    // }
     deleteRecipe = async (id) => {
         const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
             method: 'DELETE'
@@ -191,8 +170,10 @@ class RecipeContainer extends Component{
         <ShowUser user={this.props.currentUser} recipes={this.state.recipes}/>
 
         <RecipeList recipes = {this.state.recipes}/>
-        <RecipeShow openAndEdit={this.openAndEdit} currentUser={this.props.currentUser} recipes={this.state.recipes}/>
-        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
+        
+        <RecipeShow openAndEdit={this.openAndEdit} currentUser={this.props.currentUser } handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe} recipes={this.state.recipes}/>
+
+    
 
 
 
