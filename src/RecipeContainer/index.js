@@ -1,7 +1,9 @@
-import React, { Component } from "react"
-import RecipeList from "../RecipeList"
-import RecipeShow from "../RecipeShow"
-import RecipeEdit from "../RecipeEdit"
+import React, { Component } from 'react'
+import RecipeList from '../RecipeList'
+import RecipeShow from '../RecipeShow'
+import RecipeEdit from '../RecipeEdit'
+
+
 class RecipeContainer extends Component{
     state={
         recipes:[],
@@ -23,6 +25,7 @@ class RecipeContainer extends Component{
         },
         showEditModal: false
       }
+    
     componentDidMount(){
         this.getRecipes()
     }
@@ -57,18 +60,18 @@ class RecipeContainer extends Component{
         });
     }
     closeAndEdit = async (e) => {
-        console.log("hit")
+        
         e.preventDefault();
+        this.getNutrition()
         try {
-            const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/recipes/${this.state.recipeToEdit.id}`, {
-                method: "PUT",
+            const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
+                method: 'PUT',
                 body: JSON.stringify(this.state.recipeToEdit),
                 headers: {
-                  "Content-Type": "application/json"
-                }
+                  'Content-Type': 'application/json'
+                } 
             })
             const editResponseParsed = await editResponse.json()
-            console.log(editResponseParsed, 'this is edit response')
             const newRecipeArrayWithEdit = this.state.recipes.map(recipe => {
                 if(recipe.id === editResponseParsed.data.id) {
                     recipe = editResponseParsed.data
@@ -83,12 +86,15 @@ class RecipeContainer extends Component{
             console.log(err, 'this is error edit')
         }
     }
-    getNutrition = async (e) => {
+    deleteRecipe = async (id) => {
+        const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
+            method: 'DELETE'
+        });
+        await deleteRecipeResponse.json();
+        this.setState({recipes: this.state.recipes.filter((recipe) => recipe.id !== id )})
+    }
+    getNutrition = async () => {
         try{
-            this.setState({
-              loading: true
-            })
-            e.preventDefault()
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.recipeToEdit.ingredient1
             const queryIng2 = this.state.recipeToEdit.ingredient2
@@ -101,9 +107,7 @@ class RecipeContainer extends Component{
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
-            // console.log(parsedIng1)
-            // console.log(parsedIng2)
-            // console.log(parsedIng3)
+          
             let ing1Cal
             let ing2Cal
             let ing3Cal
@@ -119,9 +123,11 @@ class RecipeContainer extends Component{
                 recipeToEdit:{...this.state.recipeToEdit, ingredientId1: parsedIng1.parsed[0].food.foodId}
               })
             }
+
             if(parsedIng2.error || parsedIng2.parsed.length === 0){
               ing2Cal = 0
               this.setState({
+                
                 recipeToEdit:{...this.state.recipeToEdit, ingredient2:''}
               })
             }
@@ -134,6 +140,7 @@ class RecipeContainer extends Component{
             if(parsedIng3.error || parsedIng3.parsed.length === 0){
               ing3Cal = 0
               this.setState({
+               
                 recipeToEdit:{...this.state.recipeToEdit, ingredient3:''}
               })
             }
@@ -144,35 +151,27 @@ class RecipeContainer extends Component{
                 })
             }
             this.setState(
-              {
-                recipeToEdit:{...this.state.recipeToEdit, cal: ((((
-                (ing1Cal*this.state.recipeToEdit.ingredient1Amount*28.3495/100)
-                + (ing2Cal*this.state.recipeToEdit.ingredient2Amount*28.3495/100) 
-                + (ing3Cal*this.state.recipeToEdit.ingredient3Amount*28.3495/100)))/this.state.recipeToEdit.servings).toFixed(2))
-            }})
-            this.setState({
-              UserId: this.props.UserId
-            })
-              const newRecipeResponse = await fetch (`${process.env.REACT_APP_API_URL}/recipes/`, {
-                method: "POST",
-                body: JSON.stringify(this.state),
-                headers: {
-                  "Content-Type": "application/json"
-                }
-              })
-              const parsedResponse = await newRecipeResponse.json()
+                {
+                    recipeToEdit:{...this.state.recipeToEdit, cal: ((((
+                    (ing1Cal*this.state.recipeToEdit.ingredient1Amount*28.3495/100)
+                    + (ing2Cal*this.state.recipeToEdit.ingredient2Amount*28.3495/100) 
+                    + (ing3Cal*this.state.recipeToEdit.ingredient3Amount*28.3495/100)))/this.state.recipeToEdit.servings).toFixed(2))
+                }})
+            console.log("End")
           }
         catch(err){
           console.log(err)
         }
+       
       }
+
     render(){
     return(
-        <>
+        <div>
         <RecipeList recipes = {this.state.recipes}/>
         <RecipeShow openAndEdit={this.openAndEdit}/>
-        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit}/>
-        </>
+        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
+        </div>
     )
     }
 }
