@@ -3,11 +3,10 @@ import RecipeList from '../RecipeList'
 import RecipeShow from '../RecipeShow'
 import RecipeEdit from '../RecipeEdit'
 import Register from '../Register'
-import UserShow from "../ShowUser"
 import NavBar from "../Nav"
 import Login from "../Login"
 import NewRecipe from "../NewRecipe"
-import UserRecipeList from "../UserRecipeList"
+import ShowUser from "../ShowUser"
 
 
 class RecipeContainer extends Component{
@@ -211,8 +210,8 @@ class RecipeContainer extends Component{
         }
 
          <NewRecipe UserId={this.state.currentUser.id}/>   
-        <UserShow user={this.state.currentUser} userRecipes={this.state.userRecipes}/>
-        <UserRecipeList userRecipes={this.state.userRecipes}/>
+        {/* <UserShow user={this.state.currentUser} userRecipes={this.state.userRecipes}/> */}
+        <ShowUser user={this.state.currentUser} userRecipes={this.state.userRecipes}/>
         <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
 
 
