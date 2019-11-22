@@ -3,7 +3,9 @@ import "./showUser.css"
 
 
 function ShowUser(props){
-    const userRecipes = props.recipes.map((recipe)=>{
+   
+    const userRecipes = props.recipes.filter((recipe) => recipe.UserId == props.user.id).map((recipe)=>
+    {
         return(
             <div key = {recipe.id} id="user-recipes-col"> 
                 <h2>{recipe.recipeName}</h2>
@@ -11,6 +13,7 @@ function ShowUser(props){
             </div>
         )
     })
+    
     return(
         <div id="show-user-container">
             <div id="welcome-row">

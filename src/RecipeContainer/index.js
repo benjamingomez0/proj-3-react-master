@@ -186,17 +186,11 @@ class RecipeContainer extends Component{
     return(
         <div>
          <NewRecipe UserId={this.props.currentUser.id}/>   
-        {/* <UserShow user={this.props.currentUser} userRecipes={this.state.userRecipes}/> */}
+         
         <ShowUser user={this.props.currentUser} recipes={this.state.recipes}/>
-          
-
-
-
-
-
 
         <RecipeList recipes = {this.state.recipes}/>
-        <RecipeShow openAndEdit={this.openAndEdit} currentUser={this.props.currentUser}/>
+        <RecipeShow openAndEdit={this.openAndEdit} currentUser={this.props.currentUser} recipes={this.state.recipes}/>
         <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
 
 
