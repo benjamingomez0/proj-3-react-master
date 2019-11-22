@@ -35,13 +35,13 @@ class App extends Component {
     return (
       <div className="App">
 
-        <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser}/>
+        {/* <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser}/>
         {
           this.state.loginModal?
         <Login  doUpdateCurrentUser={this.doUpdateCurrentUser}/> :null
         }
 
-         <NewRecipe UserId={this.state.currentUser.id}/>   
+         <NewRecipe UserId={this.state.currentUser.id}/>    */}
         <UserShow user={this.state.currentUser}/>
         
         <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
