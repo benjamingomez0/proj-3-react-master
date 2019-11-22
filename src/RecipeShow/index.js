@@ -7,7 +7,7 @@ class RecipeShow extends Component{
     }
 
     async componentDidMount(){
-    const recipeId=1
+    const recipeId=3
      const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
      const parsedRecipe = await reqRecipe.json()
      console.log(parsedRecipe)
