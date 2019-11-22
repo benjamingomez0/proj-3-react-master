@@ -7,6 +7,7 @@ import UserShow from "../ShowUser"
 import NavBar from "../Nav"
 import Login from "../Login"
 import NewRecipe from "../NewRecipe"
+import UserRecipeList from "../UserRecipeList"
 
 
 class RecipeContainer extends Component{
@@ -29,6 +30,7 @@ class RecipeContainer extends Component{
             id: ""
         },
         currentUser:{},
+        userRecipes:[],
         loginModal:false,
         showEditModal: false
       }
@@ -38,6 +40,7 @@ class RecipeContainer extends Component{
           currentUser : user.data,
           loginModal:false
         })
+        this.getRecipes()
       }
       showLoginModal=()=>{
         this.setState({
@@ -57,10 +60,18 @@ class RecipeContainer extends Component{
         try{
         const recipes = await fetch(`${process.env.REACT_APP_API_URL}/recipes/`);
         const parsedRecipes = await recipes.json()
+        console.log(parsedRecipes.data)
         this.setState({
             recipes:
             parsedRecipes.data
         })
+        for(let i = 0; i < parsedRecipes.data.length; i++){
+          if(Number(parsedRecipes.data[i].UserId) === this.state.currentUser.id){
+            this.setState({
+              userRecipes: [...this.state.userRecipes, parsedRecipes.data[i]]
+            })
+          }
+        }
         }
         catch(err)
         {
@@ -200,7 +211,7 @@ class RecipeContainer extends Component{
         }
 
          <NewRecipe UserId={this.state.currentUser.id}/>   
-        <UserShow user={this.state.currentUser}/>
+        <UserShow user={this.state.currentUser} recipes={this.state.recipes}/>
         
         <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
 

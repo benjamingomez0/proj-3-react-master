@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import "./showUser.css"
-import UserRecipeList from "../UserRecipeList"
+// import UserRecipeList from "../UserRecipeList"
 
 class UserShow extends Component {
     state = {
@@ -23,8 +23,8 @@ class UserShow extends Component {
         })
     }
 
-    getRecipes (){
-        const userId = this.props.user.id
+    userRecipes (){
+        // const userRecipes = this.props.recipes.map(recipe)
     }
 
     render(){
@@ -39,6 +39,7 @@ class UserShow extends Component {
                 <div id="user-recipes-container">
                     <div id="user-recipes-row">
                         <div id="user-recipes-col">
+                            {/* <UserRecipeList /> */}
                         </div>
                     </div>
                 </div>
