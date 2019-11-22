@@ -13,7 +13,6 @@ function ShowUser(props){
             </div>
         )
     })
-    
     return(
         <div id="show-user-container">
             <div id="welcome-row">

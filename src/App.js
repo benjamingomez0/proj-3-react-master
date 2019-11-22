@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import './App.css';
 import RecipeContainer from './RecipeContainer'
 import NavBar from './Nav'
-// import {Route, Switch} from 'react-router-dom'
+import {Route, Switch} from 'react-router-dom'
 
 class App extends Component{
   state={
@@ -21,11 +21,20 @@ class App extends Component{
       loginModal:true
     })
   }
+  logout=()=>{
+    this.setState({
+      currentUser:{}
+    })
+  }
   render(){
     return (
         <div className="App">
-          <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser} doUpdateCurrentUser={this.doUpdateCurrentUser} loginModal={this.state.loginModal}/>
-          <RecipeContainer doUpdateCurrentUser ={this.doUpdateCurrentUser} currentUser={this.state.currentUser}/>
+          <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser} doUpdateCurrentUser={this.doUpdateCurrentUser} loginModal={this.state.loginModal} logout={this.logout}/>
+          
+          <Switch>
+            <Route exact path ='/' render={()=> <RecipeContainer doUpdateCurrentUser ={this.doUpdateCurrentUser} currentUser={this.state.currentUser}/> }/>
+            
+          </Switch>
         </div>
       )
     }  

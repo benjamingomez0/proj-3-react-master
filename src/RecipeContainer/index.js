@@ -7,6 +7,7 @@ import NavBar from "../Nav"
 import Login from "../Login"
 import NewRecipe from "../NewRecipe"
 import ShowUser from "../ShowUser"
+import {withRouter} from 'react-router-dom'
 
 
 class RecipeContainer extends Component{
@@ -186,7 +187,7 @@ class RecipeContainer extends Component{
     return(
         <div>
          <NewRecipe UserId={this.props.currentUser.id}/>   
-         
+
         <ShowUser user={this.props.currentUser} recipes={this.state.recipes}/>
 
         <RecipeList recipes = {this.state.recipes}/>
@@ -201,4 +202,4 @@ class RecipeContainer extends Component{
     )
     }
 }
-export default RecipeContainer
+export default withRouter(RecipeContainer)
