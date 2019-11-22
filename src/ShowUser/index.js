@@ -3,11 +3,9 @@ import "./showUser.css"
 
 
 function ShowUser(props){
-    const userRecipes = props.userRecipes.map((recipe)=>{
-        // const recipelink = `${process.env.REACT_APP_API_URL}/recipes/${recipe.id}`
+    const userRecipes = props.recipes.map((recipe)=>{
         return(
-            <div key = {recipe.id} id="user-recipes-col">
-                {/* <a href={recipelink}>Test Link</a> */}
+            <div key = {recipe.id} id="user-recipes-col"> 
                 <h2>{recipe.recipeName}</h2>
                 <button>View Recipe</button>
             </div>

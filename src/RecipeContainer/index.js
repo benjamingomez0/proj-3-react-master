@@ -28,30 +28,13 @@ class RecipeContainer extends Component{
             directions: "",
             id: ""
         },
-        currentUser:{},
         userRecipes:[],
-        loginModal:false,
+        
         showEditModal: false
       }
     
-      doUpdateCurrentUser=user=>{
-        this.setState({
-          currentUser : user.data,
-          loginModal:false
-        })
-        this.getRecipes()
-      }
-      showLoginModal=()=>{
-        this.setState({
-          loginModal:true
-        })
-      }
-      hideLoginModal=()=>{
-        this.setState({
-          loginModal:false
-        })
-      }
-
+ 
+     
     componentDidMount(){
         this.getRecipes()
     }
@@ -64,13 +47,13 @@ class RecipeContainer extends Component{
             recipes:
             parsedRecipes.data
         })
-        for(let i = 0; i < parsedRecipes.data.length; i++){
-          if(Number(parsedRecipes.data[i].UserId) === this.state.currentUser.id){
-            this.setState({
-              userRecipes: [...this.state.userRecipes, parsedRecipes.data[i]]
-            })
-          }
-        }
+        // for(let i = 0; i < parsedRecipes.data.length; i++){
+        //   if(Number(parsedRecipes.data[i].UserId) === this.props.currentUser.id){
+        //     this.setState({
+        //       userRecipes: [...this.state.userRecipes, parsedRecipes.data[i]]
+        //     })
+        //   }
+        // }
         }
         catch(err)
         {
@@ -202,17 +185,10 @@ class RecipeContainer extends Component{
     render(){
     return(
         <div>
-        <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser}/>
-
-        {
-          this.state.loginModal?
-        <Login  doUpdateCurrentUser={this.doUpdateCurrentUser}/> :null
-        }
-
-         <NewRecipe UserId={this.state.currentUser.id}/>   
-        {/* <UserShow user={this.state.currentUser} userRecipes={this.state.userRecipes}/> */}
-        <ShowUser user={this.state.currentUser} userRecipes={this.state.userRecipes}/>
-        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
+         <NewRecipe UserId={this.props.currentUser.id}/>   
+        {/* <UserShow user={this.props.currentUser} userRecipes={this.state.userRecipes}/> */}
+        <ShowUser user={this.props.currentUser} recipes={this.state.recipes}/>
+          
 
 
 
@@ -220,7 +196,7 @@ class RecipeContainer extends Component{
 
 
         <RecipeList recipes = {this.state.recipes}/>
-        <RecipeShow openAndEdit={this.openAndEdit}/>
+        <RecipeShow openAndEdit={this.openAndEdit} currentUser={this.props.currentUser}/>
         <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
 
 
