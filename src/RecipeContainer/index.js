@@ -211,8 +211,8 @@ class RecipeContainer extends Component{
         }
 
          <NewRecipe UserId={this.state.currentUser.id}/>   
-        <UserShow user={this.state.currentUser} recipes={this.state.recipes}/>
-        
+        <UserShow user={this.state.currentUser} userRecipes={this.state.userRecipes}/>
+        <UserRecipeList userRecipes={this.state.userRecipes}/>
         <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
 
 
