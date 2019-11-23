@@ -5,11 +5,13 @@ import "./recipeList.css"
 const RecipeList=(props)=>{
     const recipes= props.recipes.map((recipe)=>{
         return(
-            <div className="recipe-list-col" key = {recipe.id}>
+            <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
                 <img className="recipe-image" src={recipe.imgURL}/>
-                <h2>{recipe.recipeName}</h2>
-                <Link to={`/recipes/${recipe.id}`}>View Recipe</Link>
-            </div>
+                <div className="lower-card">
+                    <h2 id="recipe-name">{recipe.recipeName}</h2>
+                    <div>Calories: {recipe.cal}</div>
+                </div>
+            </Link>
         )
     })
     return(

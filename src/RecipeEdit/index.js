@@ -13,6 +13,7 @@ const EditRecipe = (props) => {
                 Ingredient 3: <input type="text" name="ingredient3" value={props.recipeToEdit.ingredient3} onChange={props.handleEditChange}/>
                 <input placeholder="Ounces" value={props.recipeToEdit.ingredient3Amount}type="number" min="0" name="ingredient3Amount" onChange={props.handleEditChange}/><br/>
                 Servings: <input type="number" min="0" name="servings" value={props.recipeToEdit.servings} onChange={props.handleEditChange}/><br/>
+                Recipe Image URL: <input type="text" name="imgURL" value={props.recipeToEdit.imgURL} onChange={props.handleEditChange}/><br/>
                 <textarea placeholder="Tell us how to cook your dish!" type="text" name="directions" value={props.recipeToEdit.directions} rows="10" onChange={props.handleEditChange}/><br/>
                 <div id="cal-total">
                     Calories Per Serving: {props.recipeToEdit.cal}

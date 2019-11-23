@@ -9,6 +9,9 @@
 
 .recipe-list-col{
     margin: 0 auto;
+    text-decoration: none;
+    color: black;
+    box-shadow: 0px 3px 6px 0 rgb(107, 107, 107);
 }
 
 .welcome-header{
