@@ -22,7 +22,7 @@ class NavBar extends Component{
                             <Link to={`/user/${this.props.currentUser.id}`} className="nav-anchor">Hello, {this.props.currentUser.first_name}</Link>
                         </div>
                         <div className="nav-col">
-                            <a className="nav-anchor" href="#" onClick={this.props.logout}> Logout</a>
+                            <Link to={`/`} className="nav-anchor" href="#" onClick={this.props.logout}> Logout</Link>
                         </div>
                         </>
                         :
