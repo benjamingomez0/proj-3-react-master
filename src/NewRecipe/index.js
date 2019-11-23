@@ -150,9 +150,6 @@ class NewRecipe extends Component{
                     </div>
                     <button id="new-recipe-button" onClick={this.getNutrition}>Hattrick!</button><br/>
                 </form>
-                  {/* <div className="error">{this.state.error1}</div>
-                  <div className="error">{this.state.error2}</div>
-                  <div className="error">{this.state.error3}</div> */}
                 </div>
             </div>
         )

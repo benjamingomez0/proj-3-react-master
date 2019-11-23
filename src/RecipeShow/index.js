@@ -163,6 +163,11 @@ class RecipeShow extends Component{
                 </div>
               </div>
               <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-cal-col">
+                  Calories Per Serving: {this.state.recipe.cal}
+                </div>
+              </div>
+              <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-ingredients-col">
                   Ingredients: <br/>
                   {
