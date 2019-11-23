@@ -2,6 +2,8 @@ import React from 'react'
 import "./showUser.css"
 import { withRouter } from 'react-router-dom'
 
+
+
 function ShowUser(props){
    console.log(props)
     const userRecipes = props.recipes.filter((recipe) => recipe.UserId == props.user.id).map((recipe)=>

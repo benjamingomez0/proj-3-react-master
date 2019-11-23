@@ -1,12 +1,5 @@
 import React, { Component } from 'react'
 import RecipeList from '../RecipeList'
-import RecipeShow from '../RecipeShow'
-import RecipeEdit from '../RecipeEdit'
-import Register from '../Register'
-import NavBar from "../Nav"
-import Login from "../Login"
-import NewRecipe from "../NewRecipe"
-import ShowUser from "../ShowUser"
 import { withRouter } from 'react-router-dom'
 
 
@@ -131,16 +124,7 @@ class RecipeContainer extends Component{
     render(){
     return(
         <div>
-       
-        <RecipeList recipes = {this.state.recipes}/>
-   
-
-    
-
-
-
-
-
+          <RecipeList recipes = {this.state.recipes}/>
         </div>
     )
     }

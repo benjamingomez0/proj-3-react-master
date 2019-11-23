@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import RecipeEdit from '../RecipeEdit'
 import { withRouter, Link } from 'react-router-dom'
+import "./recipeShow.css"
 
 class RecipeShow extends Component{
     state={
@@ -10,12 +11,16 @@ class RecipeShow extends Component{
         loading: false
     }
     async componentDidMount(){
+      
     const recipeId = this.props.match.params.id
 
      const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
      const parsedRecipe = await reqRecipe.json()
      console.log(parsedRecipe)
-     this.setState({recipe:parsedRecipe.data})
+     this.setState({
+       recipe:parsedRecipe.data,
+       show: false
+      })
     }
     handleEditChange = (e) => {
         this.setState({
@@ -30,7 +35,8 @@ class RecipeShow extends Component{
         e.preventDefault();
         await this.getNutrition()
         this.setState({
-            loading: false
+            loading: false,
+            show: false
         })
         try {
             const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipe.id}`, {
@@ -139,20 +145,73 @@ class RecipeShow extends Component{
       }
     render(){
         return(
-            <div>
-            <h1>{this.state.recipe.recipeName}</h1>
-            <ul>
-            <li>{this.state.recipe.ingredient1}:                    {this.state.recipe.ingredient1Amount}</li>
-            <li>{this.state.recipe.ingredient2}:                    {this.state.recipe.ingredient2Amount}</li>
-            <li>{this.state.recipe.ingredient3}:                    {this.state.recipe.ingredient3Amount}</li>
-            </ul>
-            <button onClick ={()=>{this.setState({
-                show: !this.state.show
-            })}}>Edit</button>
+          <>
+            <div id="recipe-show-container" style={{'display' : this.state.show ? "none" : "block"}}>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-name-col">
+                  {this.state.recipe.recipeName}
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col">
+                  <img className="recipe-show-image" src={this.state.recipe.imgURL}/>
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-servings-col">
+                  Servings: {this.state.recipe.servings}
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-cal-col">
+                  Calories Per Serving: {this.state.recipe.cal}
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-ingredients-col">
+                  Ingredients: <br/>
+                  {
+                    this.state.recipe.ingredient1 !== ""
+                    ?
+                    <>
+                    {this.state.recipe.ingredient1} ({this.state.recipe.ingredient1Amount} oz.)<br/>
+                    </>
+                    :
+                    null
+                  }
+                  {
+                    this.state.recipe.ingredient2 !== ""
+                    ?
+                    <>
+                    {this.state.recipe.ingredient2} ({this.state.recipe.ingredient2Amount} oz.)<br/>
+                    </>
+                    :
+                    null
+                  }
+                  {
+                    this.state.recipe.ingredient3 !== ""
+                    ?
+                    <>
+                    {this.state.recipe.ingredient3} ({this.state.recipe.ingredient3Amount} oz.)
+                    </>
+                    :
+                    null
+                  }
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-directions-col">
+                  Directions: {this.state.recipe.directions}
+                </div>
+              </div>
+              <button id="edit-recipe-button" onClick ={()=>{this.setState({
+                  show: !this.state.show
+              })}}>Edit</button>
+            </div>
             <div style={{'display' : this.state.show ? "block" : "none"}} >
-                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading}/>
+                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading} mount={this.componentDidMount} match={this.props.match.params.id}/>
             </div>
-            </div>
+          </>
         )
     }
 }
