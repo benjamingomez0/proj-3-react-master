@@ -193,9 +193,9 @@ class RecipeShow extends Component{
                   Directions: {this.state.recipe.directions}
                 </div>
               </div>
-            <button onClick ={()=>{this.setState({
-                show: !this.state.show
-            })}}>Edit</button>
+              <button id="edit-recipe-button" onClick ={()=>{this.setState({
+                  show: !this.state.show
+              })}}>Edit</button>
             <div style={{'display' : this.state.show ? "block" : "none"}} >
                 <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading}/>
             </div>
