@@ -28,16 +28,38 @@ input {
     border: none;
 }
 
-#register-container{
+#login-container{
     background-image: url("./images/register-ingredients.jpg");
     background-size: cover;
     height: 100%;
     padding-top: 30px;
 }
 
-#register-layer{
+#login-layer{
     background-color: rgba(0, 0, 0, .4);
     width: 80%;
     margin: 0 auto;
     padding: 15px;
+    display: flex;
+}
+
+#login-side{
+    margin: 0 auto;
+}
+
+#register-side{
+    margin: 0 auto;
+}
+
+#login-form{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white
+}
+
+.error{
+    color: red
+}
+
+#login-header{
+    color:  white
 }

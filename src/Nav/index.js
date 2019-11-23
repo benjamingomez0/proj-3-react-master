@@ -35,7 +35,7 @@ class NavBar extends Component{
             {
                 this.props.loginModal ?
                 <div>
-                <Register doUpdateCurrentUser = {this.props.doUpdateCurrentUser}/> <Login  doUpdateCurrentUser={this.props.doUpdateCurrentUser}/>
+                <Register doUpdateCurrentUser = {this.props.doUpdateCurrentUser}/>
                 </div>
                 : null
             }

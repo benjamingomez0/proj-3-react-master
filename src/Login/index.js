@@ -12,7 +12,7 @@ class Login extends Component {
             })
     }
 
-    handleSubmit = async (e) => {
+    handleLogin = async (e) => {
         e.preventDefault()
         console.log("hitting")
         const loginResponse = await fetch (`${process.env.REACT_APP_API_URL}/users/login`, {
@@ -39,7 +39,7 @@ class Login extends Component {
         return(
             <div>
                 <h1>Log In</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleLogin}>
                     Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
                     Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
                     <button type="submit" >Submit</button>
