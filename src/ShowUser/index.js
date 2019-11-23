@@ -17,7 +17,7 @@ function ShowUser(props){
     })
     return(
         <div id="show-user-container">
-          Hitting
+          
             <div id="welcome-row">
                 <h2>Hello {props.user.first_name}</h2>
             </div>
