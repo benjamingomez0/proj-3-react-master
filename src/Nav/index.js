@@ -23,7 +23,7 @@ class NavBar extends Component{
                         this.props.currentUser.email?
                         <>
                         <span>Hello, {this.props.currentUser.first_name}</span>
-                        <a className="nav-anchor" href="#"> Logout</a>
+                        <a className="nav-anchor" href="#" onClick={this.props.logout}> Logout</a>
                         </>:
                         <button  onClick ={this.props.showLoginModal}>Login/Register</button>
 
