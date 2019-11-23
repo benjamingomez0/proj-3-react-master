@@ -52,10 +52,16 @@ class RecipeShow extends Component{
         const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
             method: 'DELETE'
         });
-        await deleteRecipeResponse.json();
+        const deleted = await deleteRecipeResponse.json();
+        console.log(deleted)
         this.setState({
             recipes: {}
         })
+      
+        if(deleted.status.message ==='Recipe Deleted')
+        {
+            this.props.history.push('/')
+        }
     }
     getNutrition = async () => {
         try{

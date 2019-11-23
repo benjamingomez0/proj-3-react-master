@@ -35,7 +35,7 @@ class App extends Component{
           <Switch>
             <Route exact path ='/' render={()=> <RecipeContainer doUpdateCurrentUser ={this.doUpdateCurrentUser} currentUser={this.state.currentUser}/> }/>
             <Route exact path='/recipes/:id' render={() => <RecipeShow />} />
-            <Route exact path='/recipes/:id/edit' render={() => <div>this is the edit Component</div>} />
+            
           </Switch>
         </div>
       )
