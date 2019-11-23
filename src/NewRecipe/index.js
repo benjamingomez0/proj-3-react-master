@@ -19,6 +19,7 @@ class NewRecipe extends Component{
         cal: 0,
         servings: 1,
         directions: "",
+        imgURL: "",
         error1: "",
         error2: "",
         error3: "",
@@ -139,6 +140,7 @@ class NewRecipe extends Component{
                     Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
                     <input placeholder="Ounces" type="number" min="0" name="ingredient3Amount" onChange={this.handleChange}/><br/>
                     Servings: <input type="number" min="0" name="servings" onChange={this.handleChange}/><br/>
+                    Recipe Image URL: <input type="text" name="imgURL" onChange={this.handleChange}/>
                     <textarea placeholder="Tell us how to cook your dish!" type="text" name="directions" rows="10" onChange={this.handleChange}/><br/>
                     <div id="cal-total">
                       Calories Per Serving: {this.state.cal}
