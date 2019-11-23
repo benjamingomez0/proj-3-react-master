@@ -1,6 +1,7 @@
 import React, {Component} from "react"
 import RecipeEdit from '../RecipeEdit'
 import { withRouter, Link } from 'react-router-dom'
+import "./recipeShow.css"
 
 class RecipeShow extends Component{
     state={
@@ -139,13 +140,59 @@ class RecipeShow extends Component{
       }
     render(){
         return(
-            <div>
-            <h1>{this.state.recipe.recipeName}</h1>
-            <ul>
-            <li>{this.state.recipe.ingredient1}:                    {this.state.recipe.ingredient1Amount}</li>
-            <li>{this.state.recipe.ingredient2}:                    {this.state.recipe.ingredient2Amount}</li>
-            <li>{this.state.recipe.ingredient3}:                    {this.state.recipe.ingredient3Amount}</li>
-            </ul>
+            <div id="recipe-show-container">
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-name-col">
+                  {this.state.recipe.recipeName}
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col">
+                  <img className="recipe-show-image" src={this.state.recipe.imgURL}/>
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-servings-col">
+                  Servings: {this.state.recipe.servings}
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-ingredients-col">
+                  Ingredients: <br/>
+                  {
+                    this.state.recipe.ingredient1 !== ""
+                    ?
+                    <>
+                    {this.state.recipe.ingredient1} ({this.state.recipe.ingredient1Amount} oz.)<br/>
+                    </>
+                    :
+                    null
+                  }
+                  {
+                    this.state.recipe.ingredient2 !== ""
+                    ?
+                    <>
+                    {this.state.recipe.ingredient2} ({this.state.recipe.ingredient2Amount} oz.)<br/>
+                    </>
+                    :
+                    null
+                  }
+                  {
+                    this.state.recipe.ingredient3 !== ""
+                    ?
+                    <>
+                    {this.state.recipe.ingredient3} ({this.state.recipe.ingredient3Amount} oz.)
+                    </>
+                    :
+                    null
+                  }
+                </div>
+              </div>
+              <div className="recipe-show-row">
+                <div className="recipe-show-col" id="recipe-show-directions-col">
+                  Directions: {this.state.recipe.directions}
+                </div>
+              </div>
             <button onClick ={()=>{this.setState({
                 show: !this.state.show
             })}}>Edit</button>
