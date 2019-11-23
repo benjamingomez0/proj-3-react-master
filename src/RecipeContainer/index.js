@@ -124,16 +124,7 @@ class RecipeContainer extends Component{
     render(){
     return(
         <div>
-       
-        <RecipeList recipes = {this.state.recipes}/>
-   
-
-    
-
-
-
-
-
+          <RecipeList recipes = {this.state.recipes}/>
         </div>
     )
     }
