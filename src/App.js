@@ -43,6 +43,11 @@ getRecipes= async () =>{
       loginModal:true
     })
   }
+  closeLoginModal =()=> {
+    this.setState({
+      loginModal:false
+    })
+  }
   logout=()=>{
     this.setState({
       currentUser:{}
@@ -51,11 +56,11 @@ getRecipes= async () =>{
   render(){
     return (
         <div className="App">
-          <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser} doUpdateCurrentUser={this.doUpdateCurrentUser} loginModal={this.state.loginModal} logout={this.logout}/>
+          <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser} doUpdateCurrentUser={this.doUpdateCurrentUser} loginModal={this.state.loginModal} logout={this.logout} closeLoginModal={this.closeLoginModal}/>
           
           <Switch>
             <Route exact path = '/recipes/new' render={()=><NewRecipe UserId={this.state.currentUser.id}/>} />
-            <Route exact path='/recipes/:id' render={() => <RecipeShow />} />
+            <Route exact path='/recipes/:id' render={() => <RecipeShow user={this.state.currentUser}/>} />
             <Route exact path= '/user/:id' render={()=><ShowUser user={this.state.currentUser} recipes={this.state.recipes}/>}/>
             <Route exact path ='/' render={()=> <RecipeContainer doUpdateCurrentUser ={this.doUpdateCurrentUser} currentUser={this.state.currentUser}/> }/>
           </Switch>
