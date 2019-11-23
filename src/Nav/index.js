@@ -15,16 +15,22 @@ class NavBar extends Component{
                 <div className="nav-col">
                 <Link to={'/recipes/new'} className="nav-anchor">Create Recipe</Link>
                 </div>
-                <div className="nav-col">
                         {
-                        this.props.currentUser.email?
+                        this.props.currentUser.email
+                        ?
                         <>
-                        <span>Hello {this.props.currentUser.first_name}</span>
-                        <a className="nav-anchor" href="#" onClick={this.props.logout}> Logout</a>
-                        </>:
-                        <a href="#" className="nav-anchor" onClick ={this.props.showLoginModal}>Login/Register</a>
+                        <div className="nav-col">
+                            <Link to={`/user/${this.props.currentUser.id}`} className="nav-anchor">Hello, {this.props.currentUser.first_name}</Link>
+                        </div>
+                        <div className="nav-col">
+                            <a className="nav-anchor" href="#" onClick={this.props.logout}> Logout</a>
+                        </div>
+                        </>
+                        :
+                        <div className="nav-col">
+                            <a href="#" className="nav-anchor" onClick ={this.props.showLoginModal}>Login/Register</a>
+                        </div>
                         }
-                </div>
             </div>
             {
                 this.props.loginModal ?
