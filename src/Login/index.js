@@ -35,7 +35,7 @@ class Login extends Component {
         }
     }
 
-    render(props){
+    render(){
         return(
             <div>
                 <h1>Log In</h1>

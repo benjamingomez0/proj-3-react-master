@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import "./register.css"
+import {Modal} from "semantic-ui-react"
 
 class Register extends Component{
     state={
