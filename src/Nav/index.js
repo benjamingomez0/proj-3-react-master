@@ -22,7 +22,7 @@ class NavBar extends Component{
                         <span>Hello {this.props.currentUser.first_name}</span>
                         <a className="nav-anchor" href="#" onClick={this.props.logout}> Logout</a>
                         </>:
-                        <button  onClick ={this.props.showLoginModal}>Login/Register</button>
+                        <a href="#" className="nav-anchor" onClick ={this.props.showLoginModal}>Login/Register</a>
                         }
                 </div>
             </div>
