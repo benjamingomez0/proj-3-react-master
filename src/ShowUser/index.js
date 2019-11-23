@@ -1,9 +1,9 @@
 import React from 'react'
 import "./showUser.css"
-
+import { withRouter } from 'react-router-dom'
 
 function ShowUser(props){
-   
+   console.log(props)
     const userRecipes = props.recipes.filter((recipe) => recipe.UserId == props.user.id).map((recipe)=>
     {
         return(
@@ -15,6 +15,7 @@ function ShowUser(props){
     })
     return(
         <div id="show-user-container">
+          Hitting
             <div id="welcome-row">
                 <h2>Hello, {props.user.first_name}</h2>
             </div>
@@ -30,4 +31,4 @@ function ShowUser(props){
     )
 }
 
-export default ShowUser
+export default withRouter(ShowUser)
