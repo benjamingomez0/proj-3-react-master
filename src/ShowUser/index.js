@@ -1,6 +1,6 @@
 import React from 'react'
 import "./showUser.css"
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 
 
@@ -9,10 +9,17 @@ function ShowUser(props){
     const userRecipes = props.recipes.filter((recipe) => recipe.UserId == props.user.id).map((recipe)=>
     {
         return(
-            <div key = {recipe.id} id="user-recipes-col"> 
-                <h2>{recipe.recipeName}</h2>
-                <button>View Recipe</button>
-            </div>
+            // <div key = {recipe.id} id="user-recipes-col"> 
+            //     <h2>{recipe.recipeName}</h2>
+            //     <button>View Recipe</button>
+            // </div>
+            <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
+                <img className="recipe-image" src={recipe.imgURL}/>
+                <div className="lower-card">
+                    <h2 class="recipe-name">{recipe.recipeName}</h2>
+                    <div>Calories: {recipe.cal}</div>
+                </div>
+            </Link>
         )
     })
     return(

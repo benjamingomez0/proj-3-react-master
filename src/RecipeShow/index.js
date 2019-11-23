@@ -46,6 +46,7 @@ class RecipeShow extends Component{
                   'Content-Type': 'application/json'
                 } 
             })
+            
             const editResponseParsed = await editResponse.json()
             console.log(editResponseParsed, "THIS IS THE CLOSE EDIT PARSE")
 
