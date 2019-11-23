@@ -11,12 +11,16 @@ class RecipeShow extends Component{
         loading: false
     }
     async componentDidMount(){
+      
     const recipeId = this.props.match.params.id
 
      const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
      const parsedRecipe = await reqRecipe.json()
      console.log(parsedRecipe)
-     this.setState({recipe:parsedRecipe.data})
+     this.setState({
+       recipe:parsedRecipe.data,
+       show: false
+      })
     }
     handleEditChange = (e) => {
         this.setState({
@@ -31,7 +35,8 @@ class RecipeShow extends Component{
         e.preventDefault();
         await this.getNutrition()
         this.setState({
-            loading: false
+            loading: false,
+            show: false
         })
         try {
             const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipe.id}`, {
@@ -140,7 +145,8 @@ class RecipeShow extends Component{
       }
     render(){
         return(
-            <div id="recipe-show-container">
+          <>
+            <div id="recipe-show-container" style={{'display' : this.state.show ? "none" : "block"}}>
               <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-name-col">
                   {this.state.recipe.recipeName}
@@ -196,10 +202,11 @@ class RecipeShow extends Component{
               <button id="edit-recipe-button" onClick ={()=>{this.setState({
                   show: !this.state.show
               })}}>Edit</button>
+            </div>
             <div style={{'display' : this.state.show ? "block" : "none"}} >
-                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading}/>
+                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading} mount={this.componentDidMount} match={this.props.match.params.id}/>
             </div>
-            </div>
+          </>
         )
     }
 }

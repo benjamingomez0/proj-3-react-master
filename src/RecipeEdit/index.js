@@ -1,10 +1,11 @@
 import React from 'react'
 import {PulseLoader} from "react-spinners"
+import {Link} from "react-router-dom"
 const EditRecipe = (props) => {
     return (
         <div open={props.showEdit}>
             <h1>Edit Your Hattrick</h1>
-            <form onSubmit={props.closeAndEdit}>
+            <form >
                 Recipe Name: <input type="text" name="recipeName" value={props.recipeToEdit.recipeName} onChange={props.handleEditChange}/><br/>
                 Ingredient 1: <input type="text" name="ingredient1" value={props.recipeToEdit.ingredient1} onChange={props.handleEditChange}/>
                 <input placeholder="Ounces" value={props.recipeToEdit.ingredient1Amount} type="number" min="0" name="ingredient1Amount" onChange={props.handleEditChange}/><br/>
@@ -21,9 +22,10 @@ const EditRecipe = (props) => {
                 <div className="loader">
                     <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={props.loading}/>
                 </div>
-                <button id="edit-recipe-button" type='submit'>Hattrick!</button>
+                <button onClick={props.closeAndEdit} id="edit-recipe-button" type='submit'>Hattrick!</button>
                 
             </form>
+            {/* <button onClick={() => {props.mount()}}>Cancel</button> */}
             <button onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
         </div>  
     )
