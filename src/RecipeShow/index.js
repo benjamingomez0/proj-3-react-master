@@ -146,7 +146,6 @@ class RecipeShow extends Component{
             <li>{this.state.recipe.ingredient2}:                    {this.state.recipe.ingredient2Amount}</li>
             <li>{this.state.recipe.ingredient3}:                    {this.state.recipe.ingredient3Amount}</li>
             </ul>
-            <Link to={`/recipes/${this.state.recipe.id}/edit`}>EDIT</Link>
             <button onClick ={()=>{this.setState({
                 show: !this.state.show
             })}}>Edit</button>
