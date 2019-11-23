@@ -48,41 +48,7 @@ class RecipeContainer extends Component{
             }
         });
     }
-    // handleEditChange = (e) => {
-    //     this.setState({
-    //         recipeToEdit: {
-    //             ...this.state.recipeToEdit,
-    //             [e.currentTarget.name]: e.currentTarget.value
-    //         }
-    //     });
-    // }
-    // closeAndEdit = async (e) => {
-        
-    //     e.preventDefault();
-    //     this.getNutrition()
-    //     try {
-    //         const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
-    //             method: 'PUT',
-    //             body: JSON.stringify(this.state.recipeToEdit),
-    //             headers: {
-    //               'Content-Type': 'application/json'
-    //             } 
-    //         })
-    //         const editResponseParsed = await editResponse.json()
-    //         const newRecipeArrayWithEdit = this.state.recipes.map(recipe => {
-    //             if(recipe.id === editResponseParsed.data.id) {
-    //                 recipe = editResponseParsed.data
-    //             }
-    //             return recipe
-    //         });
-    //         this.setState({
-    //             showEditModal: false,
-    //             recipes: newRecipeArrayWithEdit
-    //           });
-    //     }catch(err) {
-    //         console.log(err, 'this is error edit')
-    //     }
-    // }
+    
     deleteRecipe = async (id) => {
         const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
             method: 'DELETE'
@@ -165,7 +131,7 @@ class RecipeContainer extends Component{
     render(){
     return(
         <div>
-         <NewRecipe UserId={this.props.currentUser.id}/>   
+         {/* <NewRecipe UserId={this.props.currentUser.id}/>    */}
 
         <ShowUser user={this.props.currentUser} recipes={this.state.recipes}/>
 
