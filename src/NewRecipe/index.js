@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 // import {Button, Form} from "semantic-ui-react"
 import "./newRecipe.css"
 import {PulseLoader} from "react-spinners"
+import { withRouter } from 'react-router-dom'
 
 class NewRecipe extends Component{
     state = {
@@ -157,4 +158,4 @@ class NewRecipe extends Component{
 }
 
 
-export default NewRecipe
+export default withRouter(NewRecipe)

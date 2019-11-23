@@ -1,7 +1,6 @@
 import React from 'react'
 import {PulseLoader} from "react-spinners"
 const EditRecipe = (props) => {
-    console.log(props)
     return (
         <div open={props.showEdit}>
             <h1>Edit Your Hattrick</h1>
@@ -19,11 +18,12 @@ const EditRecipe = (props) => {
                     Calories Per Serving: {props.recipeToEdit.cal}
                 </div>
                 <div className="loader">
-                    {/* <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={this.state.loading}/> */}
+                    <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={props.loading}/>
                 </div>
                 <button id="edit-recipe-button" type='submit'>Hattrick!</button>
-                <button onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
+                
             </form>
+            <button onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
         </div>  
     )
 }

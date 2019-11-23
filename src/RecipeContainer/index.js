@@ -7,51 +7,20 @@ import NavBar from "../Nav"
 import Login from "../Login"
 import NewRecipe from "../NewRecipe"
 import ShowUser from "../ShowUser"
+import { withRouter } from 'react-router-dom'
 
 
 class RecipeContainer extends Component{
     state={
         recipes:[],
-        recipeToEdit: {
-            recipeName: "",
-            ingredient1: "",
-            ingredient1Amount: "",
-            ingredientId1:"",
-            ingredient2: "",
-            ingredient2Amount: "",
-            ingredientId2:"",
-            ingredient3: "",
-            ingredient3Amount: "",
-            ingredientId3:"",
-            cal: 0,
-            servings: 1,
-            directions: "",
-            id: ""
-        },
-        currentUser:{},
+
         userRecipes:[],
-        loginModal:false,
+        
         showEditModal: false
       }
     
-      doUpdateCurrentUser=user=>{
-        this.setState({
-          currentUser : user.data,
-          loginModal:false
-        })
-        this.getRecipes()
-      }
-      showLoginModal=()=>{
-        this.setState({
-          loginModal:true
-        })
-      }
-      hideLoginModal=()=>{
-        this.setState({
-          loginModal:false
-        })
-      }
-
+ 
+     
     componentDidMount(){
         this.getRecipes()
     }
@@ -64,13 +33,7 @@ class RecipeContainer extends Component{
             recipes:
             parsedRecipes.data
         })
-        for(let i = 0; i < parsedRecipes.data.length; i++){
-          if(Number(parsedRecipes.data[i].UserId) === this.state.currentUser.id){
-            this.setState({
-              userRecipes: [...this.state.userRecipes, parsedRecipes.data[i]]
-            })
-          }
-        }
+      
         }
         catch(err)
         {
@@ -85,41 +48,7 @@ class RecipeContainer extends Component{
             }
         });
     }
-    handleEditChange = (e) => {
-        this.setState({
-            recipeToEdit: {
-                ...this.state.recipeToEdit,
-                [e.currentTarget.name]: e.currentTarget.value
-            }
-        });
-    }
-    closeAndEdit = async (e) => {
-        
-        e.preventDefault();
-        this.getNutrition()
-        try {
-            const editResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${this.state.recipeToEdit.id}`, {
-                method: 'PUT',
-                body: JSON.stringify(this.state.recipeToEdit),
-                headers: {
-                  'Content-Type': 'application/json'
-                } 
-            })
-            const editResponseParsed = await editResponse.json()
-            const newRecipeArrayWithEdit = this.state.recipes.map(recipe => {
-                if(recipe.id === editResponseParsed.data.id) {
-                    recipe = editResponseParsed.data
-                }
-                return recipe
-            });
-            this.setState({
-                showEditModal: false,
-                recipes: newRecipeArrayWithEdit
-              });
-        }catch(err) {
-            console.log(err, 'this is error edit')
-        }
-    }
+    
     deleteRecipe = async (id) => {
         const deleteRecipeResponse = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${id}`, {
             method: 'DELETE'
@@ -202,26 +131,11 @@ class RecipeContainer extends Component{
     render(){
     return(
         <div>
-        <NavBar showLoginModal={this.showLoginModal} currentUser={this.state.currentUser}/>
-
-        {
-          this.state.loginModal?
-        <Login  doUpdateCurrentUser={this.doUpdateCurrentUser}/> :null
-        }
-
-         <NewRecipe UserId={this.state.currentUser.id}/>   
-        {/* <UserShow user={this.state.currentUser} userRecipes={this.state.userRecipes}/> */}
-        <ShowUser user={this.state.currentUser} userRecipes={this.state.userRecipes}/>
-        <Register doUpdateCurrentUser = {this.doUpdateCurrentUser}/>    
-
-
-
-
-
-
+       
         <RecipeList recipes = {this.state.recipes}/>
-        <RecipeShow openAndEdit={this.openAndEdit}/>
-        <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipeToEdit} getNutrition={this.getNutrition} deleteRecipe={this.deleteRecipe}/>
+   
+
+    
 
 
 
@@ -231,4 +145,4 @@ class RecipeContainer extends Component{
     )
     }
 }
-export default RecipeContainer
+export default withRouter(RecipeContainer)

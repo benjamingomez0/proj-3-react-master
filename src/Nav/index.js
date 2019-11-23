@@ -1,30 +1,42 @@
-import React from 'react'
+import React, {Component} from 'react'
+import Register from '../Register'
+import Login from '../Login'
+import { Link } from 'react-router-dom'
 import "./nav.css"
 
-function NavBar (props) {
-    return(
-        <div className="nav-row">
-            <div className="nav-col">
-                <a className="nav-anchor" href="#">Home</a>
+class NavBar extends Component{
+    render(){
+        return(
+            <>
+            <div className="nav-row">
+                <div className="nav-col">
+                <Link to={'/'} className="nav-anchor">Explore</Link>
+                </div>
+                <div className="nav-col">
+                <Link to={'/recipes/new'} className="nav-anchor">Create Recipe</Link>
+                </div>
+                <div className="nav-col">
+                        {
+                        this.props.currentUser.email?
+                        <>
+                        <span>Hello {this.props.currentUser.first_name}</span>
+                        <a className="nav-anchor" href="#" onClick={this.props.logout}> Logout</a>
+                        </>:
+                        <button  onClick ={this.props.showLoginModal}>Login/Register</button>
+                        }
+                </div>
             </div>
-            <div className="nav-col">
-                <a className="nav-anchor" href="#">Create Recipe</a>
-            </div>
-            <div className="nav-col">
-                <a className="nav-anchor" href="#">Explore</a>
-            </div>
-            <div className="nav-col">
-                    {
-                    props.currentUser.email?
-                    <>
-                    <span>Hello, {props.currentUser.first_name}</span>
-                    <a className="nav-anchor" href="#"> Logout</a>
-                    </>:
-                    <button  onClick ={props.showLoginModal}>Login/Register</button>
-                    }
-            </div>
-        </div>
-    )
+            {
+                this.props.loginModal ?
+                <div>
+                <Register doUpdateCurrentUser = {this.props.doUpdateCurrentUser}/> <Login  doUpdateCurrentUser={this.props.doUpdateCurrentUser}/>
+                </div>
+                : null
+            }
+        
+            </>
+        )
+    }
 }
 
 export default NavBar
