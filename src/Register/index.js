@@ -15,6 +15,18 @@ class Register extends Component{
             [e.currentTarget.name]:e.currentTarget.value
             })
     }
+
+    handleCancel=()=>{
+        this.setState({
+            email:'',
+            password:'',
+            first_name:'',
+            last_name:'',
+            username:''
+        })
+        this.props.closeLoginModal()
+    }
+
     handleSubmit = async (e)=>{
         e.preventDefault();
         const registerResponse = await fetch(`${process.env.REACT_APP_API_URL}/users/register`,{
@@ -56,6 +68,11 @@ class Register extends Component{
         return(
             <div id="login-container">
                 <div id="login-layer">
+                    <div id="cancel-login-row" onClick={this.handleCancel}>
+                        <div id="cancel-x">
+                            X
+                        </div>
+                    </div>
                     <div id="login-side">
                         <h1 id="login-header">Log In</h1>
                         <form id="login-form" onSubmit={this.handleLogin}>

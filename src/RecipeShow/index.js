@@ -46,6 +46,7 @@ class RecipeShow extends Component{
                   'Content-Type': 'application/json'
                 } 
             })
+            
             const editResponseParsed = await editResponse.json()
             console.log(editResponseParsed, "THIS IS THE CLOSE EDIT PARSE")
 
@@ -204,9 +205,15 @@ class RecipeShow extends Component{
                   Directions: {this.state.recipe.directions}
                 </div>
               </div>
-              <button id="edit-recipe-button" onClick ={()=>{this.setState({
-                  show: !this.state.show
-              })}}>Edit</button>
+              {
+                Number(this.props.user.id) === Number(this.state.recipe.UserId)
+                ?
+                <button id="edit-recipe-button" onClick ={()=>{this.setState({
+                    show: !this.state.show
+                })}}>Edit</button>
+                :
+                null
+              }
             </div>
             <div style={{'display' : this.state.show ? "block" : "none"}} >
                 <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading} mount={this.componentDidMount} match={this.props.match.params.id}/>
