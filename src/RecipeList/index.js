@@ -2,13 +2,14 @@ import React from 'react'
 import { Link } from  'react-router-dom'
 import "./recipeList.css"
 
+
 const RecipeList=(props)=>{
     const recipes= props.recipes.map((recipe)=>{
         return(
             <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
                 <img className="recipe-image" src={recipe.imgURL}/>
                 <div className="lower-card">
-                    <h2 id="recipe-name">{recipe.recipeName}</h2>
+                    <h2 class="recipe-name">{recipe.recipeName}</h2>
                     <div>Calories: {recipe.cal}</div>
                 </div>
             </Link>
