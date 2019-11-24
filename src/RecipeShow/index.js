@@ -91,11 +91,11 @@ class RecipeShow extends Component{
             let ing1Cal
             let ing2Cal
             let ing3Cal
-            if(parsedIng1.error || parsedIng1.parsed.length === 0){
+            if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
-              this.setState({
-                recipe:{...this.state.recipe, ingredient1:''}
-              })
+              // this.setState({
+              //   recipe:{...this.state.recipe, ingredient1:''}
+              // })
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
@@ -104,12 +104,12 @@ class RecipeShow extends Component{
               })
             }
 
-            if(parsedIng2.error || parsedIng2.parsed.length === 0){
+            if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
-              this.setState({
+              // this.setState({
                 
-                recipe:{...this.state.recipe, ingredient2:''}
-              })
+              //   recipe:{...this.state.recipe, ingredient2:''}
+              // })
             }
             else {
                 ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
@@ -117,12 +117,12 @@ class RecipeShow extends Component{
                   recipe:{...this.state.recipe, ingredientId2: parsedIng2.parsed[0].food.foodId}
                 })
             }
-            if(parsedIng3.error || parsedIng3.parsed.length === 0){
+            if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
-              this.setState({
+              // this.setState({
                
-                recipe:{...this.state.recipe, ingredient3:''}
-              })
+              //   recipe:{...this.state.recipe, ingredient3:''}
+              // })
             }
             else {
                 ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL

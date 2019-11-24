@@ -75,3 +75,7 @@ input {
     border: 1px solid white;
     color: white
 }
+
+select{
+    margin: 10px 10px;
+}
