@@ -12,14 +12,22 @@ class NavBar extends Component{
                 <Link to={'/'} className="nav-anchor">Explore</Link>
                 </div>
                 <div className="nav-col">
-                <Link to={'/recipes/new'} className="nav-anchor">Create Recipe</Link>
+                <div>
+                {
+                    this.props.currentUser.email
+                    ?
+                    <Link to={'/recipes/new'} className="nav-anchor">Create Recipe</Link>
+                    :
+                    <a href="#" className="nav-anchor" onClick ={this.props.showLoginModal}>Create Recipe</a>
+                }
                 </div>
-                        {
+                </div>
+                    {
                         this.props.currentUser.email
                         ?
                         <>
                         <div className="nav-col">
-                            <Link to={`/user/${this.props.currentUser.id}`} className="nav-anchor">Hello, {this.props.currentUser.first_name}</Link>
+                            <Link to={`/user/${this.props.currentUser.id}`} className="nav-anchor">Hello {this.props.currentUser.first_name}</Link>
                         </div>
                         <div className="nav-col">
                             <Link to={`/`} className="nav-anchor" onClick={this.props.logout}> Logout</Link>
@@ -29,12 +37,12 @@ class NavBar extends Component{
                         <div className="nav-col">
                             <a className="nav-anchor" onClick ={this.props.showLoginModal}>Login/Register</a>
                         </div>
-                        }
+                    }
             </div>
             {
                 this.props.loginModal ?
                 <div>
-                <Register doUpdateCurrentUser = {this.props.doUpdateCurrentUser} closeLoginModal={this.props.closeLoginModal}/>
+                    <Register doUpdateCurrentUser = {this.props.doUpdateCurrentUser} closeLoginModal={this.props.closeLoginModal}/>
                 </div>
                 : null
             }

@@ -11,4 +11,5 @@
     text-decoration: none;
     color: white;
     font-weight: bolder;
+    text-transform: capitalize;
 }
