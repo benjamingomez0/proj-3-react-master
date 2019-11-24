@@ -8,13 +8,13 @@ class NewRecipe extends Component{
     state = {
         recipeName: "",
         ingredient1: "",
-        ingredient1Amount: "",
+        ingredient1Amount: 0,
         ingredientId1:"",
         ingredient2: "",
-        ingredient2Amount: "",
+        ingredient2Amount: 0,
         ingredientId2:"",
         ingredient3: "",
-        ingredient3Amount: "",
+        ingredient3Amount: 0,
         ingredientId3:"",
         cal: 0,
         servings: 1,
@@ -53,7 +53,7 @@ class NewRecipe extends Component{
             let ing1Cal
             let ing2Cal
             let ing3Cal
-            if(parsedIng1.error || parsedIng1.parsed.length === 0){
+            if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
               this.setState({
                 // error1: "Ingredient 1 not calculated. Please try a different search if you want to include it.",
@@ -67,8 +67,7 @@ class NewRecipe extends Component{
                 ingredientId1: parsedIng1.parsed[0].food.foodId,
               })
             }
-
-            if(parsedIng2.error || parsedIng2.parsed.length === 0){
+            if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
               this.setState({
                 // error2: "Ingredient 2 not calculated. Please try a different search if you want to include it.",
@@ -82,7 +81,7 @@ class NewRecipe extends Component{
                 ingredientId2: parsedIng2.parsed[0].food.foodId,
               })
             }
-            if(parsedIng3.error || parsedIng3.parsed.length === 0){
+            if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
               this.setState({
                 // error3: "Ingredient 3 not calculated. Please try a different search if you want to include it.",
