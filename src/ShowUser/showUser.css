@@ -21,3 +21,14 @@
     text-align: left;
     padding: 15px
 }
+
+.avatar-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+
+}
+
+#avatar-row{
+    margin: 40px 0 20px 0
+}
