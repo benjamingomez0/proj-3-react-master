@@ -55,10 +55,10 @@ class NewRecipe extends Component{
             let ing3Cal
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
-              this.setState({
-                // error1: "Ingredient 1 not calculated. Please try a different search if you want to include it.",
-                ingredientId1: ""
-              })
+              // this.setState({
+              //   // error1: "Ingredient 1 not calculated. Please try a different search if you want to include it.",
+              //   ingredientId1: ""
+              // })
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
@@ -69,10 +69,10 @@ class NewRecipe extends Component{
             }
             if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
-              this.setState({
-                // error2: "Ingredient 2 not calculated. Please try a different search if you want to include it.",
-                ingredientId2: ""
-              })
+              // this.setState({
+              //   // error2: "Ingredient 2 not calculated. Please try a different search if you want to include it.",
+              //   ingredientId2: ""
+              // })
             }
             else {
               ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
@@ -83,10 +83,10 @@ class NewRecipe extends Component{
             }
             if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
-              this.setState({
-                // error3: "Ingredient 3 not calculated. Please try a different search if you want to include it.",
-                ingredientId3: ""
-              })
+              // this.setState({
+              //   // error3: "Ingredient 3 not calculated. Please try a different search if you want to include it.",
+              //   ingredientId3: ""
+              // })
             }
             else {
               ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
