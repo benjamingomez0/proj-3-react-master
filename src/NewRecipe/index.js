@@ -125,7 +125,7 @@ class NewRecipe extends Component{
         }
        
       }
-
+    
     render(){
         return(
             <div id="new-recipe-container">
@@ -148,7 +148,7 @@ class NewRecipe extends Component{
                     <div className="loader">
                       <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={this.state.loading}/>
                     </div>
-                    <button id="new-recipe-button" onClick={this.getNutrition}  >Hattrick!</button><br/>
+                    <button id="new-recipe-button" onClick={this.getNutrition}>Hattrick!</button><br/>
                 </form>
                 </div>
             </div>
