@@ -24,7 +24,17 @@ function ShowUser(props){
     })
     return(
         <div id="show-user-container">
-          
+            <div id="avatar-row">
+                {
+                    props.user.avatar === "" ? <img id="avatar" src="./images/default.jpg"/>
+                    :
+                    props.user.avatar === "vegetables" ? <img id="vegetables" src="./images/default.jpg"/>
+                    :
+                    props.user.avatar === "meats" ? <img id="meats" src="./images/default.jpg"/>
+                    :
+                    <img id="fruits" src="./images/default.jpg"/>
+                }
+            </div>
             <div id="welcome-row">
                 <h2>Hello {props.user.first_name}</h2>
             </div>
