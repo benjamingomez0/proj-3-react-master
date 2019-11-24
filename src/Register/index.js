@@ -91,6 +91,7 @@ class Register extends Component{
                             Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
                             First Name: <input type= 'text' name='first_name' onChange={this.handleChange}/><br/>
                             Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
+                            Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
                             Profile Icon:
                             <select name='avatar' onChange={this.handleChange}>
                                 <option value="">Select Your Favorite</option>
@@ -99,7 +100,6 @@ class Register extends Component{
                                 <option value="fruits">Fruits</option>
                             </select>
                             <br/>
-                            Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
                             <button id="register-button" type='submit'>Submit</button>
                         </form>
                     </div>
