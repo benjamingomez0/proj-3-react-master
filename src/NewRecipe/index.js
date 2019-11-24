@@ -116,16 +116,14 @@ class NewRecipe extends Component{
               })
               const parsedResponse = await newRecipeResponse.json()
               console.log(parsedResponse,'new recipe parsed JSON')
-            
-              
-            
+            this.props.history.push(`/user/${this.props.UserId}`)
           }
         catch(err){
           console.log(err)
         }
        
       }
-
+    
     render(){
         return(
             <div id="new-recipe-container">
@@ -148,7 +146,7 @@ class NewRecipe extends Component{
                     <div className="loader">
                       <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={this.state.loading}/>
                     </div>
-                    <button id="new-recipe-button" onClick={this.getNutrition}  >Hattrick!</button><br/>
+                    <button id="new-recipe-button" onClick={this.getNutrition}>Hattrick!</button><br/>
                 </form>
                 </div>
             </div>
