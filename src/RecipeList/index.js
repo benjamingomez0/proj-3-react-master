@@ -9,7 +9,7 @@ const RecipeList=(props)=>{
             <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
                 <img className="recipe-image" src={recipe.imgURL}/>
                 <div className="lower-card">
-                    <h2 class="recipe-name">{recipe.recipeName}</h2>
+                    <h2 className="recipe-name">{recipe.recipeName}</h2>
                     <div>Calories: {recipe.cal}</div>
                 </div>
             </Link>

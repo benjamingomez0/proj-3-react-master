@@ -12,8 +12,10 @@ class Register extends Component{
         avatar:""
     }
     handleChange=(e)=>{
+        console.log(e.currentTarget.name)
+        console.log(e.currentTarget.value)
         this.setState({
-            [e.currentTarget.name]:e.currentTarget.value
+            [e.currentTarget.name]:e.currentTarget.value,
             })
     }
 
@@ -23,7 +25,8 @@ class Register extends Component{
             password:'',
             first_name:'',
             last_name:'',
-            username:''
+            username:'',
+            avatar: ""
         })
         this.props.closeLoginModal()
     }
@@ -90,6 +93,7 @@ class Register extends Component{
                             Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
                             Profile Icon:
                             <select name='avatar' onChange={this.handleChange}>
+                                <option value="">Select Your Favorite</option>
                                 <option value="vegetables">Vegetables</option>
                                 <option value="meats">Meats</option>
                                 <option value="fruits">Fruits</option>
