@@ -18,7 +18,7 @@ class NavBar extends Component{
                     ?
                     <Link to={'/recipes/new'} className="nav-anchor">Create Recipe</Link>
                     :
-                    ''
+                    <a href="#" className="nav-anchor" onClick ={this.props.showLoginModal}>Create Recipe</a>
                 }
                 </div>
                 </div>
