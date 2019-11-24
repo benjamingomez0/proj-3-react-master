@@ -116,9 +116,7 @@ class NewRecipe extends Component{
               })
               const parsedResponse = await newRecipeResponse.json()
               console.log(parsedResponse,'new recipe parsed JSON')
-            
-              
-            
+            this.props.history.push(`/user/${this.props.UserId}`)
           }
         catch(err){
           console.log(err)
