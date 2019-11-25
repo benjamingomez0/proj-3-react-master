@@ -46,7 +46,7 @@ class ShowUser extends Component{
             <div id="show-user-container">
                 <div id="avatar-row">
                     {
-                        this.props.user.avatar === "" ? <img className="avatar-img" id="avatar" src="https://images.unsplash.com/photo-1549370699-e8c493402b69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60"/>
+                        this.props.user.avatar === "" ? <img className="avatar-img" id="avatar" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80"/>
                         :
                         this.props.user.avatar === "vegetables" ? <img className="avatar-img" id="vegetables" src="https://images.unsplash.com/photo-1522184216316-3c25379f9760?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"/>
                         :
