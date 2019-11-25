@@ -107,10 +107,10 @@ class Register extends Component{
                         <h1 id="register-header">Register</h1>
                         <form id="register-form" onSubmit= {this.handleSubmit}>
                             {this.state.registrationMessage}<br/>
-                            Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
-                            First Name: <input type= 'text' name='first_name' onChange={this.handleChange}/><br/>
+                            Email: <input type= 'text' name='email' onChange={this.handleChange} required/><br/>
+                            First Name: <input type= 'text' name='first_name' onChange={this.handleChange} required/><br/>
                             Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
-                            Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
+                            Password: <input type= 'text' name='password' onChange={this.handleChange} required/><br/>
                             Profile Icon:
                             <select name='avatar' onChange={this.handleChange}>
                                 <option value="">Select Your Favorite</option>
