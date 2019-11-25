@@ -1,16 +1,26 @@
 #recipe-show-container{
     font-family: Arial, Helvetica, sans-serif;
+    font-size-adjust: unset;
+    font-size: 2rem;
 }
 
 .recipe-show-row{
     margin: 20px 0;
+
+}
+.recipe-show-col{
+    text-align: center;
 }
 
 #recipe-show-name-col{
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
-    font-size: 40px;
+    font-size: 4rem;
     margin: 20px 0;
+    text-transform: capitalize; 
+    background-color: black;
+    color: white;
+    
 }
 
 .recipe-show-image{
@@ -26,4 +36,13 @@
     color: white;
     font-size: 15px;
     border: none;
+}
+#recipe-show-directions-col{
+    text-align: justify;
+    margin: 15px;
+
+}
+.heading-color{
+    background-color: black;
+    color: white;
 }
