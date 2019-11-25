@@ -21,7 +21,6 @@ class RecipeContainer extends Component{
         try{
         const recipes = await fetch(`${process.env.REACT_APP_API_URL}/recipes/`);
         const parsedRecipes = await recipes.json()
-        console.log(parsedRecipes.data)
         this.setState({
             recipes:
             parsedRecipes.data
@@ -55,11 +54,9 @@ class RecipeContainer extends Component{
             const queryIng1 = this.state.recipeToEdit.ingredient1
             const queryIng2 = this.state.recipeToEdit.ingredient2
             const queryIng3 = this.state.recipeToEdit.ingredient3
-            console.log('pre-fetch')
             const ing1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing3 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng3}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
-            console.log('post-fetch')
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
@@ -113,7 +110,6 @@ class RecipeContainer extends Component{
                     + (ing2Cal*this.state.recipeToEdit.ingredient2Amount*28.3495/100) 
                     + (ing3Cal*this.state.recipeToEdit.ingredient3Amount*28.3495/100)))/this.state.recipeToEdit.servings).toFixed(2))
                 }})
-            console.log("End")
           }
         catch(err){
           console.log(err)

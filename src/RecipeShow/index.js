@@ -20,7 +20,6 @@ class RecipeShow extends Component{
 
      const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
      const parsedRecipe = await reqRecipe.json()
-     console.log(parsedRecipe)
      this.setState({
        recipe:parsedRecipe.data,
        show: false
@@ -55,10 +54,9 @@ class RecipeShow extends Component{
             })
             
             const editResponseParsed = await editResponse.json()
-            console.log(editResponseParsed, "THIS IS THE CLOSE EDIT PARSE")
 
         }catch(err) {
-            console.log(err, 'this is error edit')
+            console.log(err, 'error in editing the requested resource')
         }
     }
     deleteRecipe = async (id) => {
@@ -67,7 +65,6 @@ class RecipeShow extends Component{
             method: 'DELETE'
         });
         const deleted = await deleteRecipeResponse.json();
-        console.log(deleted)
         this.setState({
             recipes: {}
         })
@@ -86,11 +83,9 @@ class RecipeShow extends Component{
             const queryIng1 = this.state.recipe.ingredient1
             const queryIng2 = this.state.recipe.ingredient2
             const queryIng3 = this.state.recipe.ingredient3
-            console.log('pre-fetch')
             const ing1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing3 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng3}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
-            console.log('post-fetch')
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
@@ -125,9 +120,6 @@ class RecipeShow extends Component{
 
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
-              // this.setState({
-              //   recipe:{...this.state.recipe, ingredient1:''}
-              // })
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
@@ -139,10 +131,6 @@ class RecipeShow extends Component{
 
             if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
-              // this.setState({
-                
-              //   recipe:{...this.state.recipe, ingredient2:''}
-              // })
             }
             else {
                 ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
@@ -153,10 +141,6 @@ class RecipeShow extends Component{
             }
             if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
-              // this.setState({
-               
-              //   recipe:{...this.state.recipe, ingredient3:''}
-              // })
             }
             else {
                 ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
@@ -172,7 +156,6 @@ class RecipeShow extends Component{
                     + (ing2Cal*this.state.recipe.ingredient2Amount*28.3495/100) 
                     + (ing3Cal*this.state.recipe.ingredient3Amount*28.3495/100)))/this.state.recipe.servings).toFixed(2))
                 }})
-            console.log("End")
           }
         catch(err){
           console.log(err)

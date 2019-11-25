@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import {Button, Form} from "semantic-ui-react"
 import "./newRecipe.css"
 import {PulseLoader} from "react-spinners"
 import { withRouter } from 'react-router-dom'
@@ -55,9 +54,6 @@ class NewRecipe extends Component{
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
-            console.log(parsedIng1)
-            console.log(parsedIng2)
-            console.log(parsedIng3)
             let ing1Cal
             let ing2Cal
             let ing3Cal
@@ -134,7 +130,6 @@ class NewRecipe extends Component{
                 }
               })
               const parsedResponse = await newRecipeResponse.json()
-              console.log(parsedResponse,'new recipe parsed JSON')
             this.props.history.push(`/user/${this.props.UserId}`)
           }
         catch(err){
