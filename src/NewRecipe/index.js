@@ -151,7 +151,7 @@ class NewRecipe extends Component{
                     <input placeholder="Ounces" type="number" min="0" name="ingredient2Amount" onChange={this.handleChange}/><br/>
                     Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
                     <input placeholder="Ounces" type="number" min="0" name="ingredient3Amount" onChange={this.handleChange}/><br/>
-                    Servings: <input type="number" min="1" name="servings" onChange={this.handleChange} required/><br/>
+                    Servings: <input type="number" min="1" name="servings" onChange={this.handleChange} value={this.state.servings} required/><br/>
                     Recipe Image URL: <input type="text" name="imgURL" onChange={this.handleChange}/>
                     <textarea placeholder="Tell us how to cook your dish!" type="text" name="directions" rows="10" onChange={this.handleChange}/><br/>
                     <div id="cal-total">
