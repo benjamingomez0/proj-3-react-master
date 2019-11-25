@@ -56,7 +56,7 @@ class Register extends Component{
         }
         else {
             this.setState({
-                registrationMessage: 'Email has already been register'
+                registrationMessage: 'Email has already been registered.'
             })
         }
 
@@ -100,13 +100,13 @@ class Register extends Component{
                             Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
                             Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
                             <button id="register-button" type="submit" >Submit</button>
-                            <br/>{this.state.loginMessage}
+                            <br/><div className="error-message">{this.state.loginMessage}</div>
                         </form>
                     </div>
                     <div id="register-side">
                         <h1 id="register-header">Register</h1>
                         <form id="register-form" onSubmit= {this.handleSubmit}>
-                            {this.state.registrationMessage}<br/>
+                        <div className="error-message">{this.state.registrationMessage}</div><br/>
                             Email: <input type= 'text' name='email' onChange={this.handleChange} required/><br/>
                             First Name: <input type= 'text' name='first_name' onChange={this.handleChange} required/><br/>
                             Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
