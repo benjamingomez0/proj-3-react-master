@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import {Button, Form} from "semantic-ui-react"
 import "./newRecipe.css"
 import {PulseLoader} from "react-spinners"
 import { withRouter } from 'react-router-dom'

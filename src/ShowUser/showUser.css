@@ -3,8 +3,6 @@
 }
 
 #user-recipes-row{
-    /* width: 100%;
-    display: flex */
     display: flex;
     width: 100%;
     flex-wrap: wrap;
