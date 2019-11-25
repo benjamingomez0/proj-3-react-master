@@ -58,7 +58,7 @@ class ShowUser extends Component{
                     }
                 </div>
                 <div id="welcome-row">
-                    <h2>Hello {this.props.user.first_name}</h2>
+                    <h2>Hello, {this.props.user.first_name}</h2>
                 </div>
                 <div id="your-recipes-row">
                     Your Recipes:
