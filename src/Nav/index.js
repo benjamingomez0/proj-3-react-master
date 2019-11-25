@@ -27,7 +27,7 @@ class NavBar extends Component{
                         ?
                         <>
                         <div className="nav-col">
-                            <Link to={`/user/${this.props.currentUser.id}`} className="nav-anchor">Hello {this.props.currentUser.first_name}</Link>
+                            <Link to={`/user/${this.props.currentUser.id}`} className="nav-anchor">Hello, {this.props.currentUser.first_name}</Link>
                         </div>
                         <div className="nav-col">
                             <Link to={`/`} className="nav-anchor" onClick={this.props.logout}> Logout</Link>

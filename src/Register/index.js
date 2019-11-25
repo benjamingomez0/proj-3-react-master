@@ -107,9 +107,9 @@ class Register extends Component{
                         <h1 id="register-header">Register</h1>
                         <form id="register-form" onSubmit= {this.handleSubmit}>
                         <div className="error-message">{this.state.registrationMessage}</div><br/>
-                            Email: <input type= 'text' name='email' onChange={this.handleChange} required/><br/>
-                            First Name: <input type= 'text' name='first_name' onChange={this.handleChange} required/><br/>
-                            Last Name: <input type= 'text' name='last_name' onChange={this.handleChange}/><br/>
+                            Email: <input type= 'text' name='email' pattern="\S+" title="Please do not start/end with spaces." onChange={this.handleChange} required/><br/>
+                            First Name: <input type= 'text' pattern="\S+" title="Please do not start/end with spaces." name='first_name' onChange={this.handleChange} required/><br/>
+                            Last Name: <input type= 'text' name='last_name' pattern="\S+" title="Please do not start/end with spaces." onChange={this.handleChange}/><br/>
                             Password: <input type= 'text' name='password' onChange={this.handleChange} required/><br/>
                             Profile Icon:
                             <select name='avatar' onChange={this.handleChange}>
