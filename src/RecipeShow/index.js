@@ -8,7 +8,11 @@ class RecipeShow extends Component{
         recipe:{
         },
         show: false,
-        loading: false
+        loading: false,
+        error1: "",
+        error2: "",
+        error3: ""
+
     }
     async componentDidMount(){
       
@@ -33,6 +37,9 @@ class RecipeShow extends Component{
         
         e.preventDefault();
         await this.getNutrition()
+        if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
+          return
+        }
         this.setState({
             loading: false,
             show: false
@@ -86,13 +93,39 @@ class RecipeShow extends Component{
             let ing1Cal
             let ing2Cal
             let ing3Cal
+
+            if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
+              if(parsedIng1.parsed.length === 0){
+                  this.setState({
+                    error1: "Ingredient 1 not found. Please try again.",
+                    loading: false
+                })
+              }
+              if(parsedIng2.parsed.length === 0){
+                  this.setState({
+                    error2: "Ingredient 2 not found. Please try again.",
+                    loading: false
+                })
+              }
+              if(parsedIng3.parsed.length === 0){
+                this.setState({
+                  error3: "Ingredient 3 not found. Please try again.",
+                  loading: false
+                })
+              }
+              console.log("about to return")
+              return
+            }
+            console.log("didnt return")
+
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
               this.setState({
-                recipe:{...this.state.recipe, ingredientId1: parsedIng1.parsed[0].food.foodId}
+                recipe:{...this.state.recipe, ingredientId1: parsedIng1.parsed[0].food.foodId},
+                error1: ""
               })
             }
 
@@ -102,7 +135,8 @@ class RecipeShow extends Component{
             else {
                 ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
                 this.setState({
-                  recipe:{...this.state.recipe, ingredientId2: parsedIng2.parsed[0].food.foodId}
+                  recipe:{...this.state.recipe, ingredientId2: parsedIng2.parsed[0].food.foodId},
+                  error2: ""
                 })
             }
             if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
@@ -111,7 +145,8 @@ class RecipeShow extends Component{
             else {
                 ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
                 this.setState({
-                  recipe:{...this.state.recipe, ingredientId3: parsedIng3.parsed[0].food.foodId}
+                  recipe:{...this.state.recipe, ingredientId3: parsedIng3.parsed[0].food.foodId},
+                  error3: ""
                 })
             }
             this.setState(
@@ -199,7 +234,7 @@ class RecipeShow extends Component{
               }
             </div>
             <div style={{'display' : this.state.show ? "block" : "none"}} >
-                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading} mount={this.componentDidMount} match={this.props.match.params.id}/>
+                <RecipeEdit  handleEditChange={this.handleEditChange} closeAndEdit={this.closeAndEdit} recipeToEdit={this.state.recipe} getNutrition={this.props.getNutrition} deleteRecipe={this.deleteRecipe} loading={this.state.loading} mount={this.componentDidMount} match={this.props.match.params.id} error1={this.state.error1} error2={this.state.error2} error3={this.state.error3}/>
             </div>
           </>
         )

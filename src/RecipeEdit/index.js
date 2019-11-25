@@ -25,6 +25,9 @@ const EditRecipe = (props) => {
                     <div className="loader">
                         <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={props.loading}/>
                     </div>
+                    <div className="error">{props.error1}</div>
+                    <div className="error">{props.error2}</div>
+                    <div className="error">{props.error3}</div>
                     <button type="submit" id="edit-recipe-button" type='submit'>Hattrick!</button>
                     
                 </form>
