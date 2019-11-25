@@ -38,6 +38,9 @@ class RecipeShow extends Component{
         
         e.preventDefault();
         await this.getNutrition()
+        if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
+          return
+        }
         this.setState({
             loading: false,
             show: false
@@ -115,8 +118,10 @@ class RecipeShow extends Component{
                   loading: false
                 })
               }
+              console.log("about to return")
               return
             }
+            console.log("didnt return")
 
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
