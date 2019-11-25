@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./showUser.css"
 import { withRouter, Link } from 'react-router-dom'
-
+import ReactImageFallback from "react-image-fallback";
 
 class ShowUser extends Component{
     state = {
@@ -27,13 +27,13 @@ class ShowUser extends Component{
             console.log(err)
         }
     }
-
+    
     render(){
         const userRecipes = this.state.recipes.map((recipe)=>
     {
         return(
             <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
-                <img className="recipe-image" src={recipe.imgURL}/>
+                <ReactImageFallback className="recipe-image" src={recipe.imgURL} fallbackImage="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
                 <div className="lower-card">
                     <h2 className="recipe-name">{recipe.recipeName}</h2>
                     <div>Calories: {recipe.cal}</div>
