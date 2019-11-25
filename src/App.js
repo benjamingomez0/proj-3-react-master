@@ -20,7 +20,6 @@ getRecipes= async () =>{
     try{
     const recipes = await fetch(`${process.env.REACT_APP_API_URL}/recipes/`);
     const parsedRecipes = await recipes.json()
-    console.log(parsedRecipes.data)
     this.setState({
         recipes:
         parsedRecipes.data
