@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import "./showUser.css"
 import { withRouter, Link } from 'react-router-dom'
-
+import ReactImageFallback from "react-image-fallback";
 
 class ShowUser extends Component{
     state = {
@@ -27,13 +27,13 @@ class ShowUser extends Component{
             console.log(err)
         }
     }
-
+    
     render(){
         const userRecipes = this.state.recipes.map((recipe)=>
     {
         return(
             <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
-                <img className="recipe-image" src={recipe.imgURL}/>
+                <ReactImageFallback className="recipe-image" src={recipe.imgURL} fallbackImage="https://images.unsplash.com/photo-1506368249639-73a05d6f6488?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80"/>
                 <div className="lower-card">
                     <h2 className="recipe-name">{recipe.recipeName}</h2>
                     <div>Calories: {recipe.cal}</div>
@@ -46,7 +46,7 @@ class ShowUser extends Component{
             <div id="show-user-container">
                 <div id="avatar-row">
                     {
-                        this.props.user.avatar === "" ? <img className="avatar-img" id="avatar" src="https://images.unsplash.com/photo-1549370699-e8c493402b69?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1400&q=60"/>
+                        this.props.user.avatar === "" ? <img className="avatar-img" id="avatar" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1100&q=80"/>
                         :
                         this.props.user.avatar === "vegetables" ? <img className="avatar-img" id="vegetables" src="https://images.unsplash.com/photo-1522184216316-3c25379f9760?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"/>
                         :
