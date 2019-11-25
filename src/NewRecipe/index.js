@@ -28,7 +28,7 @@ class NewRecipe extends Component{
 
     handleChange = (e) => {
         this.setState({
-          [e.currentTarget.name]: e.currentTarget.value
+          [e.currentTarget.name]: e.currentTarget.value,
         })
         if(this.state.recipeName === ""){
           this.setState({
@@ -39,7 +39,10 @@ class NewRecipe extends Component{
     getNutrition = async (e) => {
         try{
             this.setState({
-              loading: true
+              loading: true,
+              error1: "",
+              error2: "",
+              error3: ""
             })
             e.preventDefault()
             //FOOD DATABASE IS BASED ON PER 100G
@@ -58,12 +61,30 @@ class NewRecipe extends Component{
             let ing1Cal
             let ing2Cal
             let ing3Cal
+            if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
+              if(parsedIng1.parsed.length === 0){
+                  this.setState({
+                    error1: "Ingredient 1 not found. Please try again.",
+                    loading: false
+                })
+              }
+              if(parsedIng2.parsed.length === 0){
+                  this.setState({
+                    error2: "Ingredient 2 not found. Please try again.",
+                    loading: false
+                })
+              }
+              if(parsedIng3.parsed.length === 0){
+                this.setState({
+                  error3: "Ingredient 3 not found. Please try again.",
+                  loading: false
+                })
+              }
+              return
+            }
+
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
-              // this.setState({
-              //   // error1: "Ingredient 1 not calculated. Please try a different search if you want to include it.",
-              //   ingredientId1: ""
-              // })
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
@@ -74,10 +95,6 @@ class NewRecipe extends Component{
             }
             if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
-              // this.setState({
-              //   // error2: "Ingredient 2 not calculated. Please try a different search if you want to include it.",
-              //   ingredientId2: ""
-              // })
             }
             else {
               ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
@@ -88,10 +105,6 @@ class NewRecipe extends Component{
             }
             if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
-              // this.setState({
-              //   // error3: "Ingredient 3 not calculated. Please try a different search if you want to include it.",
-              //   ingredientId3: ""
-              // })
             }
             else {
               ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
@@ -100,6 +113,8 @@ class NewRecipe extends Component{
                 ingredientId3: parsedIng3.parsed[0].food.foodId,
               })
             }
+
+
             this.setState(
               {
               cal: ((((
@@ -150,6 +165,9 @@ class NewRecipe extends Component{
                     <div className="loader">
                       <PulseLoader sizeUnit={"px"} size={15} color={"rgb(68, 177, 250)"} loading={this.state.loading}/>
                     </div>
+                    <div className="error">{this.state.error1}</div>
+                    <div className="error">{this.state.error2}</div>
+                    <div className="error">{this.state.error3}</div>
                     <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
                 </form>
                 </div>
