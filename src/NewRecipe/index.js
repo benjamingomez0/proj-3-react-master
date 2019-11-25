@@ -189,7 +189,24 @@ class NewRecipe extends Component{
                     <div className="error">{this.state.error1}</div>
                     <div className="error">{this.state.error2}</div>
                     <div className="error">{this.state.error3}</div>
-                    <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
+                    {/* {
+                      (this.state.ingredient1 !== " " || this.state.ingredient1 !== "")&& this.state.ingredient1Amount === 0
+                      ?
+                      <div>Please input amount.</div>
+                      :
+                      null
+                    } */}
+                    {
+                      ((this.state.ingredient1 !== " " || this.state.ingredient1 !== "") && this.state.ingredient1Amount === 0)
+                      ?
+                      <>
+                      <button id="new-recipe-button" type="submit" disabled>Hattrick!</button><br/>
+                      </>
+                      :
+                      <>
+                      <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
+                      </>
+                    }
                 </form>
                 </div>
             </div>
