@@ -15,10 +15,10 @@ class ShowUser extends Component{
         try{
         const recipes = await fetch(`${process.env.REACT_APP_API_URL}/recipes/`);
         const parsedRecipes = await recipes.json()
-        console.log(parsedRecipes.data)
+        const userRecipes = parsedRecipes.data.filter((recipe) => recipe.UserId == this.props.user.id)
         this.setState({
             recipes:
-            parsedRecipes.data
+            userRecipes
         })
       
         }
@@ -28,17 +28,8 @@ class ShowUser extends Component{
         }
     }
 
-    // componentDidUpdate(){
-    //     if(this.props.recipes !== this.state.recipes){
-    //         this.setState({
-    //             recipes: [...this.props.recipes]
-    //         })
-    //     }
-    // }
-
     render(){
-        console.log(this.props)
-        const userRecipes = this.state.recipes.filter((recipe) => recipe.UserId == this.props.user.id).map((recipe)=>
+        const userRecipes = this.state.recipes.map((recipe)=>
     {
         return(
             <Link to={`/recipes/${recipe.id}`} className="recipe-list-col" key = {recipe.id}>
@@ -79,7 +70,7 @@ class ShowUser extends Component{
                 </div>
             </div>
         )
-            }
+    }
 }
 
 export default withRouter(ShowUser)
