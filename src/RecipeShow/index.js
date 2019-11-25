@@ -160,22 +160,22 @@ class RecipeShow extends Component{
               </div>
               <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-servings-col">
-                  Servings: {this.state.recipe.servings}
+                <span className="heading-color">Serves</span> <br/> {this.state.recipe.servings}
                 </div>
               </div>
               <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-cal-col">
-                  Calories Per Serving: {this.state.recipe.cal}
+                <span className="heading-color">Calories Per Serving</span><br/> {this.state.recipe.cal}
                 </div>
               </div>
               <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-ingredients-col">
-                  Ingredients: <br/>
+                <span className="heading-color">Ingredients</span> <br/>
                   {
                     this.state.recipe.ingredient1 !== ""
                     ?
                     <>
-                    {this.state.recipe.ingredient1} ({this.state.recipe.ingredient1Amount} oz.)<br/>
+                    <b>{this.state.recipe.ingredient1}</b> ({this.state.recipe.ingredient1Amount} oz.)<br/>
                     </>
                     :
                     null
@@ -184,7 +184,7 @@ class RecipeShow extends Component{
                     this.state.recipe.ingredient2 !== ""
                     ?
                     <>
-                    {this.state.recipe.ingredient2} ({this.state.recipe.ingredient2Amount} oz.)<br/>
+                    <b>{this.state.recipe.ingredient2}</b> ({this.state.recipe.ingredient2Amount} oz.)<br/>
                     </>
                     :
                     null
@@ -193,7 +193,7 @@ class RecipeShow extends Component{
                     this.state.recipe.ingredient3 !== ""
                     ?
                     <>
-                    {this.state.recipe.ingredient3} ({this.state.recipe.ingredient3Amount} oz.)
+                    <b>{this.state.recipe.ingredient3}</b> ({this.state.recipe.ingredient3Amount} oz.)
                     </>
                     :
                     null
@@ -202,7 +202,7 @@ class RecipeShow extends Component{
               </div>
               <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-directions-col">
-                  Directions: {this.state.recipe.directions}
+                  <span className="heading-color">Directions</span><br/> {this.state.recipe.directions}
                 </div>
               </div>
               {
