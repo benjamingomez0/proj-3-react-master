@@ -61,7 +61,6 @@ class ShowUser extends Component{
                     <h2>Hello, {this.props.user.first_name}</h2>
                 </div>
                 <div id="your-recipes-row">
-                    Your Recipes:
                 </div>
                 <div id="user-recipes-container">
                     <div id="user-recipes-row">
