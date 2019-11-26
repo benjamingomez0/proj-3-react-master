@@ -28,10 +28,36 @@ const EditRecipe = (props) => {
                     <div className="error">{props.error1}</div>
                     <div className="error">{props.error2}</div>
                     <div className="error">{props.error3}</div>
-                    <button type="submit" id="edit-recipe-button" type='submit'>Hattrick!</button>
-                    
+                    {
+                      (
+                        (
+                          (
+                            (props.recipeToEdit.ingredient1 !== "" && props.recipeToEdit.ingredient1 !== " ") && (props.recipeToEdit.ingredient1Amount === 0 || props.recipeToEdit.ingredient1Amount === "")
+                          ) 
+                            || 
+                          (
+                            (props.recipeToEdit.ingredient2 !== "" && props.recipeToEdit.ingredient2 !== " ") && (props.recipeToEdit.ingredient2Amount === 0 || props.recipeToEdit.ingredient2Amount === "")
+                          ) 
+                            ||
+                          (
+                            (props.recipeToEdit.ingredient3 !== "" && props.recipeToEdit.ingredient3 !== " ") && (props.recipeToEdit.ingredient3Amount === 0 || props.recipeToEdit.ingredient3Amount === "")
+                          )
+                      )
+                        ||
+                          ((props.recipeToEdit.ingredient1 === "" || props.recipeToEdit.ingredient1 === " ") && (props.recipeToEdit.ingredient2 === "" || props.recipeToEdit.ingredient2 === " ") && (props.recipeToEdit.ingredient3 === "" || props.recipeToEdit.ingredient3 === " "))
+
+                      )
+                      ?
+                      <>
+                      <button id="edit-recipe-button" type="submit" disabled>Ensure ingredients have amounts.</button><br/>
+                      </>
+                      :
+                      <>
+                      <button id="edit-recipe-button" type="submit">Hattrick!</button><br/>
+                      </>
+                      
+                    }
                 </form>
-            {/* <button onClick={() => {props.mount()}}>Cancel</button> */}
             <button id="delete-recipe-button" onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
             </div>
         </div>
