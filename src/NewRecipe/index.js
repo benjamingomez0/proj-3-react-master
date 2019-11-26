@@ -26,8 +26,6 @@ class NewRecipe extends Component{
     }
 
     handleChange = (e) => {
-      console.log(e.currentTarget.name)
-      console.log(e.currentTarget.value)
       this.setState({
         [e.currentTarget.name]: e.currentTarget.value
       })
@@ -166,30 +164,7 @@ class NewRecipe extends Component{
         }
        
       }
-    // checkIngAmounts(){
-    //   if(
-    //       (
-    //         (
-    //           (
-    //             this.state.ingredient1 !== "" && (this.state.ingredient1Amount === 0 || this.state.ingredient1Amount === "")
-    //           ) 
-    //             || 
-    //           (
-    //             this.state.ingredient2 !== "" && (this.state.ingredient2Amount === 0 || this.state.ingredient2Amount === "")
-    //           ) 
-    //             ||
-    //           (
-    //             this.state.ingredient3 !== "" && (this.state.ingredient3Amount === 0 || this.state.ingredient3Amount === "")
-    //           )
-    //         )
-    //     ||
-    //       (this.state.ingredient1 === "" && this.state.ingredient2 === "" && this.state.ingredient3 === "")
-    //     )
-    //   )
-    //   {
-    //     return "disabled"
-    //   }
-    // }
+
     render(){
         return(
             <div id="new-recipe-container">

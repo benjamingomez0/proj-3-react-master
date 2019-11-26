@@ -79,9 +79,32 @@ class RecipeShow extends Component{
     }
     getNutrition = async () => {
         try{
+          this.setState({
+            loading: true,
+            error1: "",
+            error2: "",
+            error3: ""
+          })
+          if(this.state.recipeName === ""){
             this.setState({
-                loading: true
-              })
+              recipeName: `${this.props.user.first_name}'s Recipe`
+            })
+          }
+          if(this.state.ingredient1 === ""){
+            this.setState({
+              ingredient1: " "
+            })
+          }
+          if(this.state.ingredient2 === ""){
+            this.setState({
+              ingredient2: " "
+            })
+          }
+          if(this.state.ingredient3 === ""){
+            this.setState({
+              ingredient3: " "
+            })
+          }
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.recipe.ingredient1
             const queryIng2 = this.state.recipe.ingredient2
@@ -100,34 +123,41 @@ class RecipeShow extends Component{
             let ing3Cal
 
             if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
-              if(parsedIng1.parsed.length === 0){
+              if(this.state.ingredient1 === " "){
+                console.log("pass")
+              }
+              else if (parsedIng1.parsed.length === 0){
                   this.setState({
-                    error1: "Ingredient 1 not found. Please try again.",
-                    loading: false
+                    error1: "Ingredient 1 not found. Please try again."
                 })
               }
-              if(parsedIng2.parsed.length === 0){
+              if(this.state.ingredient2 === " "){
+                console.log("pass")
+              }
+              else if(parsedIng2.parsed.length === 0){
                   this.setState({
-                    error2: "Ingredient 2 not found. Please try again.",
-                    loading: false
+                    error2: "Ingredient 2 not found. Please try again."
                 })
               }
-              if(parsedIng3.parsed.length === 0){
+              if(this.state.ingredient3 === " "){
+                console.log("pass")
+              }
+              else if(parsedIng3.parsed.length === 0){
                 this.setState({
-                  error3: "Ingredient 3 not found. Please try again.",
+                  error3: "Ingredient 3 not found. Please try again."
+                })
+              }
+              if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
+                this.setState({
                   loading: false
                 })
+                return
               }
-              console.log("about to return")
-              return
             }
-            console.log("didnt return")
 
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
-              // this.setState({
-              //   recipe:{...this.state.recipe, ingredient1:''}
-              // })
+
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
@@ -139,10 +169,7 @@ class RecipeShow extends Component{
 
             if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
-              // this.setState({
-                
-              //   recipe:{...this.state.recipe, ingredient2:''}
-              // })
+
             }
             else {
                 ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
@@ -153,10 +180,7 @@ class RecipeShow extends Component{
             }
             if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
-              // this.setState({
-               
-              //   recipe:{...this.state.recipe, ingredient3:''}
-              // })
+
             }
             else {
                 ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
