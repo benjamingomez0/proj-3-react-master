@@ -29,6 +29,26 @@ class NewRecipe extends Component{
       this.setState({
         [e.currentTarget.name]: e.currentTarget.value
       })
+      if(this.state.recipeName === ""){
+        this.setState({
+          recipeName: `${this.props.user.first_name}'s Recipe`
+        })
+      }
+      if(this.state.ingredient1 === ""){
+        this.setState({
+          ingredient1: " "
+        })
+      }
+      if(this.state.ingredient2 === ""){
+        this.setState({
+          ingredient2: " "
+        })
+      }
+      if(this.state.ingredient3 === ""){
+        this.setState({
+          ingredient3: " "
+        })
+      }
     }
 
     getNutrition = async (e) => {
@@ -39,31 +59,15 @@ class NewRecipe extends Component{
               error2: "",
               error3: ""
             })
-            if(this.state.recipeName === ""){
-              this.setState({
-                recipeName: `${this.props.user.first_name}'s Recipe`
-              })
-            }
-            if(this.state.ingredient1 === ""){
-              this.setState({
-                ingredient1: " "
-              })
-            }
-            if(this.state.ingredient2 === ""){
-              this.setState({
-                ingredient2: " "
-              })
-            }
-            if(this.state.ingredient3 === ""){
-              this.setState({
-                ingredient3: " "
-              })
-            }
             e.preventDefault()
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.ingredient1
             const queryIng2 = this.state.ingredient2
             const queryIng3 = this.state.ingredient3
+            console.log(queryIng1)
+            console.log(queryIng2)
+            console.log(queryIng3)
+
             const ing1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing3 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng3}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
