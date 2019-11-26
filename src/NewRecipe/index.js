@@ -28,11 +28,11 @@ class NewRecipe extends Component{
       this.setState({
         [e.currentTarget.name]: e.currentTarget.value
       })
-      if(this.state.recipeName === ""){
-        this.setState({
-          recipeName: `${this.props.user.first_name}'s Recipe`
-        })
-      }
+      // if(this.state.recipeName === ""){
+      //   this.setState({
+      //     recipeName: `${this.props.user.first_name}'s Recipe`
+      //   })
+      // }
       if(this.state.ingredient1 === ""){
         this.setState({
           ingredient1: " "

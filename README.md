@@ -27,3 +27,6 @@ iv. once the  user has completed a recipe, they are taken back to the user page.
 v. Clicking on explore recipes should bring user to a listing of all recipes (MVP goal stretch goals include search function)
 
 vi. clicking on a recipe card that is not the users will show the details of the ingredients, their amounts as well as directions for making, along with serving size
+
+### `URL`
+https://hattrickfoods.herokuapp.com/
