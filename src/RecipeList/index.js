@@ -18,11 +18,13 @@ const RecipeList=(props)=>{
     return(
         <div id="recipe-list-container">
             <div className="welcome-row">
-                <div className="welcome-header">
-                    Hattrick
-                </div>
-                <div className="welcome-message">
-                    Welcome to Hattrick, the go-to site for the best 3-ingredient recipes. Explore our library of recipes created by cooks around the world. Create your own hattrick recipes by logging in or creating an account.
+                <div className="welcome-layer">
+                    <div className="welcome-header">
+                        Hattrick
+                    </div>
+                    <div className="welcome-message">
+                        Welcome to Hattrick, the go-to site for the best 3-ingredient recipes. Explore our library of recipes created by cooks around the world. Create your own hattrick recipes by logging in or creating an account.
+                    </div>
                 </div>
             </div>
             <div className="recipe-list-row">
