@@ -202,7 +202,7 @@ class RecipeShow extends Component{
               </div>
               <div className="recipe-show-row">
                 <div className="recipe-show-col" id="recipe-show-directions-col">
-                  <span className="heading-color">Directions</span><br/> {this.state.recipe.directions}
+                  Directions<br/> {this.state.recipe.directions}
                 </div>
               </div>
               {
