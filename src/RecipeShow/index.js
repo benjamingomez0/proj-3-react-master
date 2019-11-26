@@ -20,7 +20,6 @@ class RecipeShow extends Component{
 
      const reqRecipe = await fetch(`${process.env.REACT_APP_API_URL}/recipes/${recipeId}`)
      const parsedRecipe = await reqRecipe.json()
-     console.log(parsedRecipe)
      this.setState({
        recipe:parsedRecipe.data,
        show: false
@@ -55,10 +54,9 @@ class RecipeShow extends Component{
             })
             
             const editResponseParsed = await editResponse.json()
-            console.log(editResponseParsed, "THIS IS THE CLOSE EDIT PARSE")
 
         }catch(err) {
-            console.log(err, 'this is error edit')
+            console.log(err, 'error in editing the requested resource')
         }
     }
     deleteRecipe = async (id) => {

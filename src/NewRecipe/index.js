@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import "./newRecipe.css"
 import {PulseLoader} from "react-spinners"
 import { withRouter } from 'react-router-dom'
-
 class NewRecipe extends Component{
     state = {
         recipeName: "",
@@ -50,6 +49,7 @@ class NewRecipe extends Component{
         })
       }
     }
+
 
     getNutrition = async (e) => {
         try{
@@ -106,10 +106,11 @@ class NewRecipe extends Component{
                 this.setState({
                   loading: false
                 })
-                return
+                return this.setState({
+                  loading: false
+                })
               }
             }
-
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
             }
@@ -140,8 +141,6 @@ class NewRecipe extends Component{
                 ingredientId3: parsedIng3.parsed[0].food.foodId,
               })
             }
-
-
             this.setState(
               {
               cal: ((((
@@ -166,7 +165,6 @@ class NewRecipe extends Component{
         catch(err){
           console.log(err)
         }
-       
       }
 
     render(){
@@ -211,7 +209,6 @@ class NewRecipe extends Component{
                       )
                         ||
                           ((this.state.ingredient1 === "" || this.state.ingredient1 === " ") && (this.state.ingredient2 === "" || this.state.ingredient2 === " ") && (this.state.ingredient3 === "" || this.state.ingredient3 === " "))
-
                       )
                       ?
                       <>
@@ -228,6 +225,4 @@ class NewRecipe extends Component{
         )
     }
 }
-
-
 export default withRouter(NewRecipe)

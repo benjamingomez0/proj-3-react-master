@@ -3,8 +3,6 @@
 }
 
 #user-recipes-row{
-    /* width: 100%;
-    display: flex */
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -36,7 +34,5 @@
 .recipe-image{
     max-width: 200px;
     max-height: 150px;
-    min-width: 200px;
-    min-height: 150px;
     object-fit:cover;
 }
