@@ -31,7 +31,7 @@ vi. clicking on a recipe card that is not the users will show the details of the
 ### `URL`
 https://hattrickfoods.herokuapp.com/
 
-### `Upcoming Featuresa`
+### `Upcoming Features`
 - Add nutritional data
 - Expand recipe direction features including support for images and videos
 - Add comment and likes functionality
