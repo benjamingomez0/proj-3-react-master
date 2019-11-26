@@ -1,4 +1,9 @@
-## Hattrick
+# Hattrick
+
+## Contributors:
+### Darren Eskandari
+### Jonathan Huynh
+### Benjamin Gomez
 
 ### `About`
 Hattrick is a recipe creation app that allows users to create and share their favorite 3 ingredient recipes. Users can also view the recipes of other users and view the nutritional information of the recipes they and other users have created. Whether you're a diehard foodie or just starting out, Hattrick is the place you'll find your next great meal.
