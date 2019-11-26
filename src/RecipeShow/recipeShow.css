@@ -40,7 +40,7 @@
 #recipe-show-directions-col{
     text-align: justify;
     width: 80%;
-
+    margin: 0 auto;
 }
 .heading-color{
     background-color: black;
