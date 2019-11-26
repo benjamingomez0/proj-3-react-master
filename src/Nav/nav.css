@@ -13,3 +13,7 @@
     font-weight: bolder;
     text-transform: capitalize;
 }
+
+#nav-login-col{
+    cursor: pointer;
+}
