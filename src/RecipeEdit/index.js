@@ -57,8 +57,6 @@ const EditRecipe = (props) => {
                       </>
                       
                     }
-                                          {/* <button id="edit-recipe-button" type="submit">Hattrick!</button><br/> */}
-
                 </form>
             <button id="delete-recipe-button" onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
             </div>
