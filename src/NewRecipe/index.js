@@ -76,36 +76,25 @@ class NewRecipe extends Component{
             let ing2Cal
             let ing3Cal
             if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
-              if(this.state.ingredient1 === " "){
-                console.log("pass")
-              }
-              else if (parsedIng1.parsed.length === 0){
+              if(parsedIng1.parsed.length === 0){
                   this.setState({
-                    error1: "Ingredient 1 not found. Please try again."
+                    error1: "Ingredient 1 not found. Please try again.",
+                    loading: false
                 })
               }
-              if(this.state.ingredient2 === " "){
-                console.log("pass")
-              }
-              else if(parsedIng2.parsed.length === 0){
+              if(parsedIng2.parsed.length === 0){
                   this.setState({
-                    error2: "Ingredient 2 not found. Please try again."
+                    error2: "Ingredient 2 not found. Please try again.",
+                    loading: false
                 })
               }
-              if(this.state.ingredient3 === " "){
-                console.log("pass")
-              }
-              else if(parsedIng3.parsed.length === 0){
+              if(parsedIng3.parsed.length === 0){
                 this.setState({
-                  error3: "Ingredient 3 not found. Please try again."
-                })
-              }
-              if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
-                this.setState({
+                  error3: "Ingredient 3 not found. Please try again.",
                   loading: false
                 })
-                return
               }
+              return
             }
 
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
@@ -203,7 +192,7 @@ class NewRecipe extends Component{
                     <input placeholder="Ounces" type="number" min="0" name="ingredient2Amount" onChange={this.handleChange}/><br/>
                     Ingredient 3: <input type="text" name="ingredient3" onChange={this.handleChange}/>
                     <input placeholder="Ounces" type="number" min="0" name="ingredient3Amount" onChange={this.handleChange}/><br/>
-                    Servings: <input type="number" min="1" name="servings" onChange={this.handleChange} value={this.state.servings} required/><br/>
+                    Servings: <input type="number" min="1" name="servings" onChange={this.handleChange} required/><br/>
                     Recipe Image URL: <input type="text" name="imgURL" onChange={this.handleChange}/>
                     <textarea placeholder="Tell us how to cook your dish!" type="text" name="directions" rows="10" onChange={this.handleChange}/><br/>
                     <div id="cal-total">
@@ -215,6 +204,7 @@ class NewRecipe extends Component{
                     <div className="error">{this.state.error1}</div>
                     <div className="error">{this.state.error2}</div>
                     <div className="error">{this.state.error3}</div>
+
                     {
                       (
                         (
@@ -243,6 +233,7 @@ class NewRecipe extends Component{
                       <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
                       </>
                     }
+
                 </form>
                 </div>
             </div>

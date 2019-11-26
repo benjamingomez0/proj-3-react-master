@@ -15,8 +15,6 @@ class Register extends Component{
         avatar:""
     }
     handleChange=(e)=>{
-        console.log(e.currentTarget.name)
-        console.log(e.currentTarget.value)
         this.setState({
             [e.currentTarget.name]:e.currentTarget.value,
             })
