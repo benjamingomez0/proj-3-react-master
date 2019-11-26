@@ -34,7 +34,7 @@ class NavBar extends Component{
                         </div>
                         </>
                         :
-                        <div className="nav-col">
+                        <div className="nav-col" id="nav-login-col">
                             <a className="nav-anchor" onClick ={this.props.showLoginModal}>Login/Register</a>
                         </div>
                     }
