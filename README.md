@@ -1,5 +1,7 @@
 # Hattrick
 
+<img width="1646" alt="Screen Shot 2019-11-24 at 5 00 36 PM" src="https://user-images.githubusercontent.com/54756740/69662906-15510400-103a-11ea-90e0-e7f9ff4def53.png">
+
 ## Contributors:
 ### Darren Eskandari
 ### Jonathan Huynh
