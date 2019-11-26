@@ -96,7 +96,7 @@ class Register extends Component{
                         <h1 id="login-header">Log In</h1>
                         <form id="login-form" onSubmit={this.handleLogin}>
                             Email: <input type= 'text' name='email' onChange={this.handleChange}/><br/>
-                            Password: <input type= 'text' name='password' onChange={this.handleChange}/><br/>
+                            Password: <input type= 'password' name='password' onChange={this.handleChange}/><br/>
                             <button id="register-button" type="submit" >Submit</button>
                             <br/><div className="error-message">{this.state.loginMessage}</div>
                         </form>
@@ -108,7 +108,7 @@ class Register extends Component{
                             Email: <input type= 'text' name='email' pattern="\S+" title="Please do not start/end with spaces." onChange={this.handleChange} required/><br/>
                             First Name: <input type= 'text' pattern="\S+" title="Please do not start/end with spaces." name='first_name' onChange={this.handleChange} required/><br/>
                             Last Name: <input type= 'text' name='last_name' pattern="\S+" title="Please do not start/end with spaces." onChange={this.handleChange}/><br/>
-                            Password: <input type= 'text' name='password' onChange={this.handleChange} required/><br/>
+                            Password: <input type= 'password' name='password' onChange={this.handleChange} required/><br/>
                             Profile Icon:
                             <select name='avatar' onChange={this.handleChange}>
                                 <option value="">Select Your Favorite</option>
