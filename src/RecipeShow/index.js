@@ -174,7 +174,7 @@ class RecipeShow extends Component{
                 <div className="recipe-show-col" id="recipe-show-ingredients-col">
                 <span className="heading-color">Ingredients</span> <br/>
                   {
-                    this.state.recipe.ingredient1 !== ""
+                    this.state.recipe.ingredientId1 !== ""
                     ?
                     <>
                     <b>{this.state.recipe.ingredient1}</b> ({this.state.recipe.ingredient1Amount} oz.)<br/>
@@ -183,7 +183,7 @@ class RecipeShow extends Component{
                     null
                   }
                   {
-                    this.state.recipe.ingredient2 !== ""
+                    this.state.recipe.ingredientId2 !== ""
                     ?
                     <>
                     <b>{this.state.recipe.ingredient2}</b> ({this.state.recipe.ingredient2Amount} oz.)<br/>
@@ -192,7 +192,7 @@ class RecipeShow extends Component{
                     null
                   }
                   {
-                    this.state.recipe.ingredient3 !== ""
+                    this.state.recipe.ingredientId3 !== ""
                     ?
                     <>
                     <b>{this.state.recipe.ingredient3}</b> ({this.state.recipe.ingredient3Amount} oz.)
