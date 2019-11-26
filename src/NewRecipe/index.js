@@ -26,30 +26,13 @@ class NewRecipe extends Component{
     }
 
     handleChange = (e) => {
-        this.setState({
-          [e.currentTarget.name]: e.currentTarget.value,
-        })
-        if(this.state.recipeName === ""){
-          this.setState({
-            recipeName: `${this.props.user.first_name}'s Recipe`
-          })
-        }
-        if(this.state.ingredient1 === ""){
-          this.setState({
-            ingredient1: " "
-          })
-        }
-        if(this.state.ingredient2 === ""){
-          this.setState({
-            ingredient2: " "
-          })
-        }
-        if(this.state.ingredient3 === ""){
-          this.setState({
-            ingredient3: " "
-          })
-        }
-      }
+      console.log(e.currentTarget.name)
+      console.log(e.currentTarget.value)
+      this.setState({
+        [e.currentTarget.name]: e.currentTarget.value
+      })
+    }
+
     getNutrition = async (e) => {
         try{
             this.setState({
@@ -58,6 +41,26 @@ class NewRecipe extends Component{
               error2: "",
               error3: ""
             })
+            if(this.state.recipeName === ""){
+              this.setState({
+                recipeName: `${this.props.user.first_name}'s Recipe`
+              })
+            }
+            if(this.state.ingredient1 === ""){
+              this.setState({
+                ingredient1: " "
+              })
+            }
+            if(this.state.ingredient2 === ""){
+              this.setState({
+                ingredient2: " "
+              })
+            }
+            if(this.state.ingredient3 === ""){
+              this.setState({
+                ingredient3: " "
+              })
+            }
             e.preventDefault()
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.ingredient1
@@ -152,7 +155,30 @@ class NewRecipe extends Component{
         }
        
       }
-    
+    // checkIngAmounts(){
+    //   if(
+    //       (
+    //         (
+    //           (
+    //             this.state.ingredient1 !== "" && (this.state.ingredient1Amount === 0 || this.state.ingredient1Amount === "")
+    //           ) 
+    //             || 
+    //           (
+    //             this.state.ingredient2 !== "" && (this.state.ingredient2Amount === 0 || this.state.ingredient2Amount === "")
+    //           ) 
+    //             ||
+    //           (
+    //             this.state.ingredient3 !== "" && (this.state.ingredient3Amount === 0 || this.state.ingredient3Amount === "")
+    //           )
+    //         )
+    //     ||
+    //       (this.state.ingredient1 === "" && this.state.ingredient2 === "" && this.state.ingredient3 === "")
+    //     )
+    //   )
+    //   {
+    //     return "disabled"
+    //   }
+    // }
     render(){
         return(
             <div id="new-recipe-container">
@@ -178,7 +204,36 @@ class NewRecipe extends Component{
                     <div className="error">{this.state.error1}</div>
                     <div className="error">{this.state.error2}</div>
                     <div className="error">{this.state.error3}</div>
-                    <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
+
+                    {
+                      (
+                        (
+                          (
+                            (this.state.ingredient1 !== "" && this.state.ingredient1 !== " ") && (this.state.ingredient1Amount === 0 || this.state.ingredient1Amount === "")
+                          ) 
+                            || 
+                          (
+                            (this.state.ingredient2 !== "" && this.state.ingredient2 !== " ") && (this.state.ingredient2Amount === 0 || this.state.ingredient2Amount === "")
+                          ) 
+                            ||
+                          (
+                            (this.state.ingredient3 !== "" && this.state.ingredient3 !== " ") && (this.state.ingredient3Amount === 0 || this.state.ingredient3Amount === "")
+                          )
+                      )
+                        ||
+                          ((this.state.ingredient1 === "" || this.state.ingredient1 === " ") && (this.state.ingredient2 === "" || this.state.ingredient2 === " ") && (this.state.ingredient3 === "" || this.state.ingredient3 === " "))
+
+                      )
+                      ?
+                      <>
+                      <button id="new-recipe-button" type="submit" disabled>Ensure ingredients have amounts.</button><br/>
+                      </>
+                      :
+                      <>
+                      <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
+                      </>
+                    }
+
                 </form>
                 </div>
             </div>
