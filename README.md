@@ -1,6 +1,5 @@
 # Hattrick
-
-<img width="1646" alt="Screen Shot 2019-11-24 at 5 00 36 PM" src="https://user-images.githubusercontent.com/54756740/69662906-15510400-103a-11ea-90e0-e7f9ff4def53.png">
+<img width="1622" alt="Screen Shot 2019-11-26 at 10 46 31 AM" src="https://user-images.githubusercontent.com/54756740/69663039-4c271a00-103a-11ea-84aa-825defbe84d6.png">
 
 ## Contributors:
 ### Darren Eskandari
