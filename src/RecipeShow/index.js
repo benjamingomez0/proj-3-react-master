@@ -32,7 +32,45 @@ class RecipeShow extends Component{
                 ...this.state.recipe,
                 [e.currentTarget.name]: e.currentTarget.value
             }
-        });
+        })
+        // console.log(this.state.recipe.recipeName)
+        // if(this.state.recipe.recipeName === ""){
+        //   this.setState({
+        //     recipe: {
+        //       ...this.state.recipe,
+        //       recipeName: `${this.props.user.first_name}'s Recipe`
+        //     }
+        //   })
+        // }
+        // console.log(this.state.recipe.ingredient1)
+
+        // if(this.state.recipe.ingredient1 === ""){
+        //   this.setState({
+        //     recipe: {
+        //       ingredient1: " "
+        //     }
+        //   })
+        // }
+        // console.log(this.state.recipe.ingredient2)
+
+        // if(this.state.recipe.ingredient2 === ""){
+        //   this.setState({
+        //     recipe: {
+        //       ingredient2: " "
+        //     }          
+        //   })
+        // }
+        // console.log(this.state.recipe.ingredient3, "OLD STATE")
+
+        // if(this.state.recipe.ingredient3 === ""){
+        //   this.setState({
+        //     recipe: {
+        //       ingredient3: " "
+        //     }          
+        //   })
+        // }
+        // console.log(this.state.recipe.ingredient3 , "NEW STATE")
+
     }
     closeAndEdit = async (e) => {
         
@@ -85,26 +123,6 @@ class RecipeShow extends Component{
             error2: "",
             error3: ""
           })
-          if(this.state.recipeName === ""){
-            this.setState({
-              recipeName: `${this.props.user.first_name}'s Recipe`
-            })
-          }
-          if(this.state.ingredient1 === ""){
-            this.setState({
-              ingredient1: " "
-            })
-          }
-          if(this.state.ingredient2 === ""){
-            this.setState({
-              ingredient2: " "
-            })
-          }
-          if(this.state.ingredient3 === ""){
-            this.setState({
-              ingredient3: " "
-            })
-          }
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.recipe.ingredient1
             const queryIng2 = this.state.recipe.ingredient2
@@ -117,43 +135,46 @@ class RecipeShow extends Component{
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
-          
+            console.log(parsedIng1)
+            console.log(parsedIng2)
+            console.log(parsedIng3)
+
             let ing1Cal
             let ing2Cal
             let ing3Cal
 
-            if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
-              if(this.state.ingredient1 === " "){
-                console.log("pass")
-              }
-              else if (parsedIng1.parsed.length === 0){
-                  this.setState({
-                    error1: "Ingredient 1 not found. Please try again."
-                })
-              }
-              if(this.state.ingredient2 === " "){
-                console.log("pass")
-              }
-              else if(parsedIng2.parsed.length === 0){
-                  this.setState({
-                    error2: "Ingredient 2 not found. Please try again."
-                })
-              }
-              if(this.state.ingredient3 === " "){
-                console.log("pass")
-              }
-              else if(parsedIng3.parsed.length === 0){
-                this.setState({
-                  error3: "Ingredient 3 not found. Please try again."
-                })
-              }
-              if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
-                this.setState({
-                  loading: false
-                })
-                return
-              }
-            }
+            // if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
+            //   if(this.state.ingredient1 === " "){
+            //     console.log("pass")
+            //   }
+            //   else if (parsedIng1.parsed.length === 0){
+            //       this.setState({
+            //         error1: "Ingredient 1 not found. Please try again."
+            //     })
+            //   }
+            //   if(this.state.ingredient2 === " "){
+            //     console.log("pass")
+            //   }
+            //   else if(parsedIng2.parsed.length === 0){
+            //       this.setState({
+            //         error2: "Ingredient 2 not found. Please try again."
+            //     })
+            //   }
+            //   if(this.state.ingredient3 === " "){
+            //     console.log("pass")
+            //   }
+            //   else if(parsedIng3.parsed.length === 0){
+            //     this.setState({
+            //       error3: "Ingredient 3 not found. Please try again."
+            //     })
+            //   }
+            //   if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
+            //     this.setState({
+            //       loading: false
+            //     })
+            //     return
+            //   }
+            // }
 
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0

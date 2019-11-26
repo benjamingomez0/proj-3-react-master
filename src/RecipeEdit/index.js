@@ -28,7 +28,6 @@ const EditRecipe = (props) => {
                     <div className="error">{props.error1}</div>
                     <div className="error">{props.error2}</div>
                     <div className="error">{props.error3}</div>
-                    {/* <button type="submit" id="edit-recipe-button" type='submit'>Hattrick!</button> */}
                     {
                       (
                         (
@@ -56,7 +55,10 @@ const EditRecipe = (props) => {
                       <>
                       <button id="edit-recipe-button" type="submit">Hattrick!</button><br/>
                       </>
+                      
                     }
+                                          {/* <button id="edit-recipe-button" type="submit">Hattrick!</button><br/> */}
+
                 </form>
             <button id="delete-recipe-button" onClick={()=>{props.deleteRecipe(props.recipeToEdit.id)}}> Delete Recipe</button>
             </div>
