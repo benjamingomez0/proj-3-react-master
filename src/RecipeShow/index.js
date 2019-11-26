@@ -31,7 +31,7 @@ class RecipeShow extends Component{
                 ...this.state.recipe,
                 [e.currentTarget.name]: e.currentTarget.value
             }
-        });
+        })
     }
     closeAndEdit = async (e) => {
         
@@ -76,9 +76,12 @@ class RecipeShow extends Component{
     }
     getNutrition = async () => {
         try{
-            this.setState({
-                loading: true
-              })
+          this.setState({
+            loading: true,
+            error1: "",
+            error2: "",
+            error3: ""
+          })
             //FOOD DATABASE IS BASED ON PER 100G
             const queryIng1 = this.state.recipe.ingredient1
             const queryIng2 = this.state.recipe.ingredient2
@@ -89,37 +92,14 @@ class RecipeShow extends Component{
             const parsedIng1 = await ing1.json()
             const parsedIng2 = await ing2.json()
             const parsedIng3 = await ing3.json()
-          
+
             let ing1Cal
             let ing2Cal
             let ing3Cal
 
-            if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
-              if(parsedIng1.parsed.length === 0){
-                  this.setState({
-                    error1: "Ingredient 1 not found. Please try again.",
-                    loading: false
-                })
-              }
-              if(parsedIng2.parsed.length === 0){
-                  this.setState({
-                    error2: "Ingredient 2 not found. Please try again.",
-                    loading: false
-                })
-              }
-              if(parsedIng3.parsed.length === 0){
-                this.setState({
-                  error3: "Ingredient 3 not found. Please try again.",
-                  loading: false
-                })
-              }
-              console.log("about to return")
-              return
-            }
-            console.log("didnt return")
-
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
+
             }
             else {
               ing1Cal = parsedIng1.parsed[0].food.nutrients.ENERC_KCAL
@@ -131,6 +111,7 @@ class RecipeShow extends Component{
 
             if(parsedIng2.error || parsedIng2.parsed.length === 0 || !parsedIng2.parsed[0].food.nutrients.ENERC_KCAL){
               ing2Cal = 0
+
             }
             else {
                 ing2Cal = parsedIng2.parsed[0].food.nutrients.ENERC_KCAL
@@ -141,6 +122,7 @@ class RecipeShow extends Component{
             }
             if(parsedIng3.error || parsedIng3.parsed.length === 0 || !parsedIng3.parsed[0].food.nutrients.ENERC_KCAL){
               ing3Cal = 0
+
             }
             else {
                 ing3Cal = parsedIng3.parsed[0].food.nutrients.ENERC_KCAL
@@ -190,7 +172,7 @@ class RecipeShow extends Component{
                 <div className="recipe-show-col" id="recipe-show-ingredients-col">
                 <span className="heading-color">Ingredients</span> <br/>
                   {
-                    this.state.recipe.ingredient1 !== ""
+                    this.state.recipe.ingredientId1 !== ""
                     ?
                     <>
                     <b>{this.state.recipe.ingredient1}</b> ({this.state.recipe.ingredient1Amount} oz.)<br/>
@@ -199,7 +181,7 @@ class RecipeShow extends Component{
                     null
                   }
                   {
-                    this.state.recipe.ingredient2 !== ""
+                    this.state.recipe.ingredientId2 !== ""
                     ?
                     <>
                     <b>{this.state.recipe.ingredient2}</b> ({this.state.recipe.ingredient2Amount} oz.)<br/>
@@ -208,7 +190,7 @@ class RecipeShow extends Component{
                     null
                   }
                   {
-                    this.state.recipe.ingredient3 !== ""
+                    this.state.recipe.ingredientId3 !== ""
                     ?
                     <>
                     <b>{this.state.recipe.ingredient3}</b> ({this.state.recipe.ingredient3Amount} oz.)

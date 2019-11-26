@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import "./newRecipe.css"
 import {PulseLoader} from "react-spinners"
 import { withRouter } from 'react-router-dom'
-
 class NewRecipe extends Component{
     state = {
         recipeName: "",
@@ -26,15 +25,32 @@ class NewRecipe extends Component{
     }
 
     handleChange = (e) => {
+      this.setState({
+        [e.currentTarget.name]: e.currentTarget.value
+      })
+      if(this.state.recipeName === ""){
         this.setState({
-          [e.currentTarget.name]: e.currentTarget.value,
+          recipeName: `${this.props.user.first_name}'s Recipe`
         })
-        if(this.state.recipeName === ""){
-          this.setState({
-            recipeName: `${this.props.user.first_name}'s Recipe`
-          })
-        }
       }
+      if(this.state.ingredient1 === ""){
+        this.setState({
+          ingredient1: " "
+        })
+      }
+      if(this.state.ingredient2 === ""){
+        this.setState({
+          ingredient2: " "
+        })
+      }
+      if(this.state.ingredient3 === ""){
+        this.setState({
+          ingredient3: " "
+        })
+      }
+    }
+
+
     getNutrition = async (e) => {
         try{
             this.setState({
@@ -48,6 +64,10 @@ class NewRecipe extends Component{
             const queryIng1 = this.state.ingredient1
             const queryIng2 = this.state.ingredient2
             const queryIng3 = this.state.ingredient3
+            console.log(queryIng1)
+            console.log(queryIng2)
+            console.log(queryIng3)
+
             const ing1 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng1}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing2 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng2}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
             const ing3 = await fetch (`https://api.edamam.com/api/food-database/parser?ingr=${queryIng3}&app_id=fbe64bfb&app_key=385e19ba163511e02698e7299dab66fb`)
@@ -58,27 +78,39 @@ class NewRecipe extends Component{
             let ing2Cal
             let ing3Cal
             if(parsedIng1.parsed.length === 0 || parsedIng2.parsed.length === 0 || parsedIng3.parsed.length === 0 ){
-              if(parsedIng1.parsed.length === 0){
+              if(this.state.ingredient1 === " "){
+                console.log("pass")
+              }
+              else if (parsedIng1.parsed.length === 0){
                   this.setState({
-                    error1: "Ingredient 1 not found. Please try again.",
-                    loading: false
+                    error1: "Ingredient 1 not found. Please try again."
                 })
               }
-              if(parsedIng2.parsed.length === 0){
+              if(this.state.ingredient2 === " "){
+                console.log("pass")
+              }
+              else if(parsedIng2.parsed.length === 0){
                   this.setState({
-                    error2: "Ingredient 2 not found. Please try again.",
-                    loading: false
+                    error2: "Ingredient 2 not found. Please try again."
                 })
               }
-              if(parsedIng3.parsed.length === 0){
+              if(this.state.ingredient3 === " "){
+                console.log("pass")
+              }
+              else if(parsedIng3.parsed.length === 0){
                 this.setState({
-                  error3: "Ingredient 3 not found. Please try again.",
+                  error3: "Ingredient 3 not found. Please try again."
+                })
+              }
+              if(this.state.error1 !== "" || this.state.error2 !== "" || this.state.error3 !== ""){
+                this.setState({
+                  loading: false
+                })
+                return this.setState({
                   loading: false
                 })
               }
-              return
             }
-
             if(parsedIng1.error || parsedIng1.parsed.length === 0 || !parsedIng1.parsed[0].food.nutrients.ENERC_KCAL){
               ing1Cal = 0
             }
@@ -109,8 +141,6 @@ class NewRecipe extends Component{
                 ingredientId3: parsedIng3.parsed[0].food.foodId,
               })
             }
-
-
             this.setState(
               {
               cal: ((((
@@ -135,9 +165,8 @@ class NewRecipe extends Component{
         catch(err){
           console.log(err)
         }
-       
       }
-    
+
     render(){
         return(
             <div id="new-recipe-container">
@@ -163,13 +192,37 @@ class NewRecipe extends Component{
                     <div className="error">{this.state.error1}</div>
                     <div className="error">{this.state.error2}</div>
                     <div className="error">{this.state.error3}</div>
-                    <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
+                    {
+                      (
+                        (
+                          (
+                            (this.state.ingredient1 !== "" && this.state.ingredient1 !== " ") && (this.state.ingredient1Amount === 0 || this.state.ingredient1Amount === "")
+                          ) 
+                            || 
+                          (
+                            (this.state.ingredient2 !== "" && this.state.ingredient2 !== " ") && (this.state.ingredient2Amount === 0 || this.state.ingredient2Amount === "")
+                          ) 
+                            ||
+                          (
+                            (this.state.ingredient3 !== "" && this.state.ingredient3 !== " ") && (this.state.ingredient3Amount === 0 || this.state.ingredient3Amount === "")
+                          )
+                      )
+                        ||
+                          ((this.state.ingredient1 === "" || this.state.ingredient1 === " ") && (this.state.ingredient2 === "" || this.state.ingredient2 === " ") && (this.state.ingredient3 === "" || this.state.ingredient3 === " "))
+                      )
+                      ?
+                      <>
+                      <button id="new-recipe-button" type="submit" disabled>Ensure ingredients have amounts.</button><br/>
+                      </>
+                      :
+                      <>
+                      <button id="new-recipe-button" type="submit">Hattrick!</button><br/>
+                      </>
+                    }
                 </form>
                 </div>
             </div>
         )
     }
 }
-
-
 export default withRouter(NewRecipe)
